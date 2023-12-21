@@ -1,12 +1,8 @@
 package pack1;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
 
 public class LabelM extends JLabel {
 	
@@ -46,5 +42,6 @@ public class LabelM extends JLabel {
 			}}
 			
 			repaint();
+			
 	}
 }

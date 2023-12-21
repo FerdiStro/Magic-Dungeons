@@ -1,8 +1,5 @@
 package pack1;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class GegnerMovement {/*
 	Timer movement;
 	private int temp = 0;

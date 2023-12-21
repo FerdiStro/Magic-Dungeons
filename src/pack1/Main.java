@@ -6,6 +6,7 @@ public class Main {
 		new Gui ();
 		new Var ();
 		new KeyHandler();
+		new LabelRot();
 		new Label();
 		new LabelM();
 		new Background();
@@ -19,8 +20,10 @@ public class Main {
 		new Hindernisszusammen();
 		new PatickelSystem();
 		new Herzen();
-		
-		
+		new BossMove();
+		new BossHit();
+		new RotHilf();
+		new Systemout();		//Consolen ausgabe
 		
 	}
 

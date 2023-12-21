@@ -14,6 +14,7 @@ Timer timer;
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			
+			
 			if(Var.moveright == true){
 		
 			}
@@ -36,8 +37,9 @@ Timer timer;
 		if (e.getKeyCode() == KeyEvent.VK_D) {
 			
 				
-			
+			if(Var.Boss == false){
 			Var.Backmove = true;
+			}
 			Var.moveright = true;
 			
 			
@@ -92,8 +94,9 @@ Timer timer;
 		
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D) {
-			
+			if(Var.Boss == false){
 			Var.Backmove = false;
+			}
 			Var.moveright = false;
 			
 				

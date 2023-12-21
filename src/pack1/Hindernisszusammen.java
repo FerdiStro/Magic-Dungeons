@@ -21,7 +21,7 @@ public class Hindernisszusammen {
 			
 			if(Var.x >= Var.H1x-40 && Var.x <= Var.H1x+60 ){
 			if (Var.y >=  Var.H1y-63 ){
-				System.out.println("zusammenstos2");
+				System.out.println("Hitbox H1");
 				
 		
 				Var.kollH1 = true;

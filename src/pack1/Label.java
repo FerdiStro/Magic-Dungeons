@@ -1,11 +1,7 @@
 package pack1;
-import java.awt.Graphics;
-import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
-import java.util.Random;
-import java.awt.Graphics2D;
 
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
 
 public class Label extends JLabel {
 	int i = 1;
@@ -27,9 +23,13 @@ public class Label extends JLabel {
 		if(Var.lbl1b ==true){
 		
 		//HINTERGURND
-
+		if(Var.Boss == false){
 		g.drawImage(Var.ib1, Var.backgroundX1, 0, 800 , 600, null);
 		g.drawImage(Var.ib2, Var.backgroundX2,0 ,800, 600, null);
+		}else if(Var.Boss == true){
+			g.drawImage(Var.iboss1background, 0, 0, 800, 600, null);
+		}
+
 		
 
 		
@@ -129,7 +129,43 @@ public class Label extends JLabel {
 			g.drawImage(Var.ibody, Var.x+1, Var.y, 35, 50, null);
 		}
 		//Boss
+		
+		
+		if(Var.Boss == true){
+
+			g.drawImage(Var.ighead, Var.gx , Var.gy - Var.gstarty , 40, 40, null);
+			g.drawImage(Var.igbody, Var.gx-20, Var.gy - Var.gstarty + 40 , 80, 120, null); 
 			
+			//boss/beine
+			if( Var.gmoveleft == false && Var.gmoveright == false || Var.bossmovec ==  true){
+				g.drawImage(Var.igbein1, Var.gx-10,Var.gy - Var.gstarty + 160,20,90, null);
+				g.drawImage(Var.igbein2, Var.gx +30, Var.gy - Var.gstarty + 160, 20, 90, null);
+			}else if(Var.gmoveleft == true || Var.gmoveright == true){
+			if(Var.gstarty <= 0){
+				
+			if(Var.gbeinanimation == 0){
+			g.drawImage(Var.igbein1, Var.gx-10,Var.gy - Var.gstarty + 160,20,90, null);
+			g.drawImage(Var.igbeinr1, Var.gx +10 , Var.gy - Var.gstarty + 160-20, 40, 120, null);
+			}else if(Var.beinanimation == 1 ){
+				g.drawImage(Var.igbeinr2, Var.gx,Var.gy - Var.gstarty + 160-10,40,120, null);
+				g.drawImage(Var.igbein2, Var.gx +30, Var.gy - Var.gstarty + 160, 20, 90, null);
+			}
+			}
+			}
+		
+			
+			
+			
+			
+			//Boss//Animation//Landen//Wolken
+			if(Var.gstarty  <= 0&&   Var.iiwolken<=100){
+				Var.iiwolken +=1;
+				g.drawImage(Var.iwolke1, Var.gx-15, Var.gy+220, 80,60,null);
+			}
+			
+			
+		
+		}
 		
 		//Angriff
 	
@@ -138,15 +174,22 @@ public class Label extends JLabel {
 			b = Var.x;
 		}
 		if(Var.angriff == true){
-				int p = h.intValue();
-				int p2 = b.intValue();
 			
+			Var.p = h.intValue();
+				Var.p2 = b.intValue();
+				Var.bx = Var.p2 + Var.Ballx;
+				Var.by = Var.p + 10;
 			
 		if( Var.angriff == true || Var.angriffhelp == true){
+			if(Var.gx > Var.x){
 			
-			
-			g.drawImage(Var.iball, p2 +Var.Ballx,  p +10 , 20, 20, null);
+			g.drawImage(Var.iball, Var.p2 +Var.Ballx,  Var.p +10 , 20, 20, null);
 				Var.angriffhelp =  true;
+			}
+			if(Var.gx < Var.x){
+				g.drawImage(Var.iball, Var.p2 -Var.Ballx,  Var.p +10 , 20, 20, null);
+				Var.angriffhelp =  true;
+			}
 							
 				
 				
@@ -157,6 +200,7 @@ public class Label extends JLabel {
 		//Angrif mit Ball //Animationnen
 		if(Var.movedown == false){
 		if(Var.angriff == true){
+			if(Var.gx > Var.x){
 				if(Var.angriffanimation == 0){
 					g.drawImage(Var.iarmr1, Var.x+25, Var.y, 30, 30,null);
 					g.drawImage(Var.iarmr1, Var.x-5, Var.y, 40, 30, null);
@@ -172,7 +216,25 @@ public class Label extends JLabel {
 					g.drawImage(Var.iarmr1, Var.x-5, Var.y, 40, 30, null);
 				}
 				
+			}
+			if(Var.gx < Var.x){
+				if(Var.angriffanimation == 0){
+					g.drawImage(Var.iarmr2, Var.x+5, Var.y+4, 30, 30,null);
+					g.drawImage(Var.iarmr2, Var.x-20, Var.y+4, 40, 30, null);
+					 g.drawImage(Var.ianball1, Var.x -20,Var.y-1 , 40	,40,null);
+					 
+			 
+				}else if (Var.angriffanimation == 1){
+					g.drawImage(Var.iarmr2, Var.x+5, Var.y+4, 30, 30,null);
+					g.drawImage(Var.iarmr2, Var.x-20, Var.y+4, 40, 30, null);
+					 g.drawImage(Var.ianball1, Var.x -20,Var.y -1 , 40	,40,null);
+				}else if (Var.angriffanimation > 1){
+					g.drawImage(Var.iarmr2, Var.x+5, Var.y, 30, 30,null);
+					g.drawImage(Var.iarmr2, Var.x-20, Var.y, 40, 30, null);
+				}
 				
+			}
+			
 			 }
 		}else if(Var.movedown == true ){
 			if(Var.angriffanimation == 0){

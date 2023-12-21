@@ -1,10 +1,10 @@
 package pack1;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class Verloren {
 Timer loose;
+/*
 private int temp=0, temp1=0;
 	public Verloren() {
 		loose = new Timer();
@@ -19,7 +19,7 @@ private int temp=0, temp1=0;
 					}
 						else if(temp==56){
 							System.out.println("Verloren");
-					}//Explosion & Verlieren | Spiel programmieren | Java | #08 [ger/1080p60] 3.38Minuten
+					}
 					
 				}
 			
@@ -29,5 +29,6 @@ private int temp=0, temp1=0;
 		},0,15);
 		
 	}
+	*/
 
 }

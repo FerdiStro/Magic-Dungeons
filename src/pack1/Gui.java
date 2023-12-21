@@ -1,10 +1,9 @@
 package pack1;
 
+import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.JFrame;
 
 public class Gui {
 
@@ -25,9 +24,16 @@ public class Gui {
 	
 		//Spiel
 		Var.lbl1 = new Label ();
-		Var.lbl1.setBounds(0,0,Var.screenwidth,Var.screenheight);	
+		Var.lblrot = new LabelRot ();
+	
+		Var.lbl1.setBounds(0,0,Var.screenwidth,Var.screenheight);
 		
+		
+		
+		Var.lblrot.setBounds(0,0,Var.screenwidth, Var.screenheight);
+		Var.jf1.add(Var.lblrot);//label Rotationen
 		Var.jf1.add(Var.lbl1);
+		
 		//Menue
 		Var.lbl2 = new LabelM ();
 		Var.lbl2.setBounds(0,0,Var.screenwidth , Var.screenheight);
@@ -41,7 +47,10 @@ public class Gui {
 			@Override
 			public void run() {
 				
-				Var.lbl2.setVisible(Var.lbl2b);
+				Var.lbl1.setVisible(Var.lbl1b);//Var.lbl1b = true
+				Var.lbl2.setVisible(Var.lbl2b);//Var.lbl2b
+				Var.lblrot.setVisible(true);
+				
 			}
 		}, 0, 9);
 	}

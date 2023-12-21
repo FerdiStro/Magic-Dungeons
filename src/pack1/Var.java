@@ -1,12 +1,10 @@
 package pack1;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class Var {
 	static JFrame jf1, jf2;
@@ -17,6 +15,7 @@ public class Var {
 	static int speedup = 10, speeddown = 2, speedleft = 3, speedright = 2, sprunghoehe = 200, speedball = 5;
 	static int armanimation, beinanimation, angriffanimation;
 	static int schrott = 0, leben = 2;;
+	
 	
 	
 	static JButton btnresume, btnshop,btnoptionen,btnexit;
@@ -42,6 +41,7 @@ public class Var {
 	
 	static Label lbl1;
 	static LabelM lbl2;
+	static LabelRot lblrot;
 
 	static BufferedImage ib1, ib2;
 	static BufferedImage ibody,ihead,iarm1, iarm2,iarmr1, iarmr2, ibein1, ibein2, ibeinr1, ibeinr2, iflamme1, iflamme2, iEffeckt1;
@@ -65,16 +65,41 @@ public class Var {
 	static BufferedImage ianball1, ianball2;
 	static int Ballx = x;
 	static int Bally = y;
+	static int bx , by;
+	static int p, p2;
+	//BOSS
+	static int gx = Var.screenwidth -100, gy = 250, gstarty = 400,wolkenanimation = 0,iiwolken = 0, gbeinanimation, Startangriff1 = 0;
+	static BufferedImage ighead, igbody, igarm1, igarm2, igarmr1,  igarmr2, igbein1, igbein2, igbeinr1, igbeinr2,iwolke1,iwolke2,iboss1background, iwaffe1, ibossback;
+	static int Bossspeed = 1,  Bossspeedtimer = 4, bossrotta = 0;
+	static boolean Boss = false, helpb = false, gmoveleft = false, gmoveright = false, bossangriffleft = false, bossangriffright = false, bossmovec = false, bossmovec2 = true;
+
+
 	
 	public Var() {
 
 		try {
+			
+			//BOSS
+			iboss1background = ImageIO.read(new File("rsc/Hintergrund/Boss1.png"));
+			ighead = ImageIO.read(new File("rsc/Boss/Head.png"));
+			igbody = ImageIO.read(new File("rsc/Boss/Body.png"));
+			igarm1 = ImageIO.read(new File("rsc/Boss/Arm1.png")); igarm2 = ImageIO.read(new File ("rsc/Boss/Arm2.png"));
+			igarmr1 = ImageIO.read(new File("rsc/Boss/Armr1.png")); igarmr2 = ImageIO.read(new File("rsc/Boss/Armr2.png"));
+			igbein1 = ImageIO.read(new File("rsc/Boss/Bein1.png")); igbein2 = ImageIO.read(new File ("rsc/Boss/Bein2.png"));
+			igbeinr1= ImageIO.read(new File("rsc/Boss/Beinr1.png")); igbeinr2 = ImageIO.read(new File("rsc/Boss/Beinr2.png"));
+			iwaffe1 = ImageIO.read(new File("rsc/Boss/Waffe1.png"));
+			//BOSS//Effecte
+			iwolke1 = ImageIO.read(new File("rsc/PatickelEffeckte/Wolken1.png"));
+			iwolke2 = ImageIO.read(new File("rsc/PatickelEffeckte/Wolken2.png"));
+			//Boss Label
+			ibossback = ImageIO.read(new File("rsc/Hintergrund/Transperenz.png"));
+
 			//Menu
 			iheadline = ImageIO.read(new File("rsc/Menu/Headline.png"));
-			ibackM = ImageIO.read(new File("rsc/Menu/HintergrundM.png"));
-			istart = ImageIO.read(new File("rsc/Menu/Start.png"));
+			
+			ibackM = ImageIO.read(getClass().getResource("/Menu/HintergrundM.png"));
 			istart1 = ImageIO.read(new File("rsc/Menu/Start2.png")); 
-			ioptionen = ImageIO.read(new File("rsc/Menu/Optionen.png"));
+			ioptionen = ImageIO.read(getClass().getResource("/Menu/Optionen.png"));
 			ioptionen1 = ImageIO.read(new File("rsc/Menu/Optionen2.png"));
 			// background
 			ib1 = ImageIO.read(new File("rsc/b1.0.png"));
@@ -105,8 +130,7 @@ public class Var {
 			//Grafische Anzeigen 
 			iAufladen1 = ImageIO.read(new File("rsc/GrapischeAnzeigen/Aufladenrot.png"));
 			iAufladen2 = ImageIO.read(new File("rsc/GrapischeAnzeigen/Aufladengruen.png"));
-			iMeter = ImageIO.read(new File("rsc/GrapischeAnzeigen/Meter.png"));
-			//Patickel
+			iMeter = ImageIO.read(new File("rsc/GrapischeAnzeigen/Meter.png"));			//Patickel
 			iEffeckt1 =  ImageIO.read(new File("rsc/PatickelEffeckte/Patickel1.png"));
 			//Herzen 
 			iherz1 = ImageIO.read(new File("rsc/GrapischeAnzeigen/Herz1.png"));
@@ -120,6 +144,7 @@ public class Var {
 			
 			e.printStackTrace();
 			System.out.println("Bilder konnten nicht geladen werden!!");
+			Var.meter = 1000; 
 
 		}
 		effectspeed[0] = 3;
