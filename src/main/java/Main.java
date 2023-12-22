@@ -1,10 +1,10 @@
-package pack1;
+import pack1.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		new Gui ();
-		new Var ();
+		new Gui();
+		new Var();
 		new KeyHandler();
 		new LabelRot();
 		new Label();

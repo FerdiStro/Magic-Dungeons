@@ -97,9 +97,9 @@ public class Var {
 			//Menu
 			iheadline = ImageIO.read(new File("rsc/Menu/Headline.png"));
 			
-			ibackM = ImageIO.read(getClass().getResource("/Menu/HintergrundM.png"));
+			ibackM = ImageIO.read(getClass().getResource("/main/resources/Menu/HintergrundM.png"));
 			istart1 = ImageIO.read(new File("rsc/Menu/Start2.png")); 
-			ioptionen = ImageIO.read(getClass().getResource("/Menu/Optionen.png"));
+			ioptionen = ImageIO.read(getClass().getResource("/main/resources/Menu/Optionen.png"));
 			ioptionen1 = ImageIO.read(new File("rsc/Menu/Optionen2.png"));
 			// background
 			ib1 = ImageIO.read(new File("rsc/b1.0.png"));
