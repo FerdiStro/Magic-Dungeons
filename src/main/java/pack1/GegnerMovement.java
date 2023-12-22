@@ -1,5 +1,4 @@
 package pack1;
-
 public class GegnerMovement {/*
 	Timer movement;
 	private int temp = 0;
