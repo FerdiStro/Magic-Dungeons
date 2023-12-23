@@ -6,8 +6,8 @@ public class GegnerMovement {/*
 	public GegnerMovement() {
 
 		for (int i = 0; i < 4; i++) {
-			Var.gegnerx[i] = 20 + temp;
-			Var.gegnery[i] = -100 - temp;
+			pack1.Var.gegnerx[i] = 20 + temp;
+			pack1.Var.gegnery[i] = -100 - temp;
 
 			temp += 160;
 
@@ -20,9 +20,9 @@ public class GegnerMovement {/*
 			public void run() {
 
 				for (int i = 0; i < 4; i++) {
-					Var.gegnery[i] += Var.gegnerspeed[i];
-					if (Var.gegnery[i] >= Var.screenheight) {
-						Var.gegnery[i] = -100;
+					pack1.Var.gegnery[i] += pack1.Var.gegnerspeed[i];
+					if (pack1.Var.gegnery[i] >= pack1.Var.screenheight) {
+						pack1.Var.gegnery[i] = -100;
 					}
 				}
 

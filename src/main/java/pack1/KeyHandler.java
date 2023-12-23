@@ -9,12 +9,12 @@ Timer timer;
 		
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(Var.lbl1b == true){
+		if(Var.lbl1b){
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			
 			
-			if(Var.moveright == true){
+			if(Var.moveright){
 		
 			}
 			if (Var.y >= Var.y - Var.sprunghoehe){
@@ -26,9 +26,9 @@ Timer timer;
 		
 		if (e.getKeyCode() == KeyEvent.VK_A) {
 				if(Var.x > 0 ){
-				
+
 			}
-			Var.Backmove = false;		
+			Var.Backmove = false;
 			Var.moveleft = true;
 		
 			
@@ -112,7 +112,7 @@ Timer timer;
 	}
 	
 		}	
-		if ( e.getKeyCode() == KeyEvent.VK_UP &&Var.menuhoch == false) {
+		if ( e.getKeyCode() == KeyEvent.VK_UP && Var.menuhoch == false) {
 			Var.menurunter = true;	
 			Var.menuhoch = false;
 			}

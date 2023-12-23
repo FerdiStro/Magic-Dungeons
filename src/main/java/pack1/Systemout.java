@@ -12,9 +12,9 @@ public class Systemout {
 			@Override
 			public void run(){
 				//Player
-				//System.out.println("--Player:   X: "+Var.x+" Y: "+Var.y+"   ---   ");
+				//System.out.println("--Player:   X: "+pack1.Var.x+" Y: "+pack1.Var.y+"   ---   ");
 				//Boss 1
-				//System.out.println("--Gegner:   X: "+Var.gx+" Y: "+Var.gy+"   ---   ");
+				//System.out.println("--Gegner:   X: "+pack1.Var.gx+" Y: "+pack1.Var.gy+"   ---   ");
 			}
 		}, 0, 1000);
 	}

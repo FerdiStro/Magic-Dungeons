@@ -1,0 +1,12 @@
+---
+values:
+  - name: screenHeight
+    type: integer
+    data: 400
+  - name: screenWeight
+    type: integer
+    data: 400
+  - name: visible
+    type: bol
+    data: true
+

@@ -14,8 +14,8 @@ public class Hindernisse {
 				if(Var.Backmove == true){
 				if (Var.H1x > -798) {
 					Var.H1x -= 2;
-					//System.out.println("HX: "+ Var.H1x + " X: "+ Var.x);
-					//System.out.println("HY: "+ Var.H1y + " Y: "+ Var.y);
+					//System.out.println("HX: "+ pack1.Var.H1x + " X: "+ pack1.Var.x);
+					//System.out.println("HY: "+ pack1.Var.H1y + " Y: "+ pack1.Var.y);
 
 
 				} }}

@@ -13,7 +13,7 @@ private int temp=0, temp1=0;
 			@Override
 			public void run() {
 				
-				if(Var.verloren){
+				if(pack1.Var.verloren){
 					if(temp>=0&& temp<=55){
 						temp++;
 					}

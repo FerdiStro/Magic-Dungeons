@@ -62,7 +62,7 @@ public class BossMove {
 			}
 				
 			}
-			},0,Var.Bossspeedtimer);
+			},0, Var.Bossspeedtimer);
 			
 			
 
@@ -114,14 +114,14 @@ public class BossMove {
 					Var.gx += Var.Bossspeed;}
 								}else Var.gmoveright = false;
 				}}
-				},0,Var.Bossspeedtimer);
+				},0, Var.Bossspeedtimer);
 				
 				//Angriff | Left 
-					/*if(Var.bossangriffleft == true){
-						if(Var.bossrotta < 90){
-							Var.bossrotta ++;
-							if(Var.bossrotta <= 90-5){
-							Var.bossrotta = 0;
+					/*if(pack1.Var.bossangriffleft == true){
+						if(pack1.Var.bossrotta < 90){
+							pack1.Var.bossrotta ++;
+							if(pack1.Var.bossrotta <= 90-5){
+							pack1.Var.bossrotta = 0;
 						}
 						}
 						

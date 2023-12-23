@@ -12,10 +12,10 @@ public class BossHit {
 			public void run(){
 						
 						
-				//System.out.println(Var.gx);
-				//System.out.println(Var.x);
-				//System.out.println(Var.bx);
-				//System.out.println(Var.by);
+				//System.out.println(pack1.Var.gx);
+				//System.out.println(pack1.Var.x);
+				//System.out.println(pack1.Var.bx);
+				//System.out.println(pack1.Var.by);
 				
 			}
 		},0,4);

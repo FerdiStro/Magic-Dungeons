@@ -12,8 +12,8 @@ public class Hindernisszusammen {
 			@Override
 			public void run() {
 				
-		//int Hitboxxa = Var.x , Hitboxxb =  Var.x +40;
-		//int Hitboxya = Var.y +50, Hitboxyb = Var.y -45;
+		//int Hitboxxa = pack1.Var.x , Hitboxxb =  pack1.Var.x +40;
+		//int Hitboxya = pack1.Var.y +50, Hitboxyb = pack1.Var.y -45;
 		for (int i = 0; i<= 4; i++){
 			
 		

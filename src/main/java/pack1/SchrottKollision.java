@@ -13,7 +13,7 @@ Timer kollision;
 			@Override
 			public void run() {
 				 
-				//Bronze Var.schrott = counter
+				//Bronze pack1.Var.schrott = counter
 				for(int i = 0; i <= 4; i++){
 					if (Var.x > Var.schrottx1[i] - 50 && Var.x <= Var.schrottx1[i] + 73 && Var.y > Var.schrotty1[i] - 50
 							&& Var.y <= Var.schrotty1[i] + 50){
