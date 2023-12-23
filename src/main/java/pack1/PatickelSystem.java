@@ -27,7 +27,7 @@ public class PatickelSystem {
 					}
 					if(Var.effeckty1[i] >= 40 && Var.effeckty1[i]<= 500){
 					
-						//System.out.println(Var.effeckty1[1] );
+						//System.out.println(pack1.Var.effeckty1[1] );
 					
 						
 					

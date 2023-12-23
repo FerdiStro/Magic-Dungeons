@@ -34,22 +34,22 @@ public class Label extends JLabel {
 		
 		/*FLAMMEN
 		
-		if (Var.flammenanimation == 0) {
-			g.drawImage(Var.iflamme1, Var.x -41 , Var.y +50 , 125, 180, null);
-		} else if (Var.flammenanimation == 1) {
-			g.drawImage(Var.iflamme2, Var.x -41, Var.y +50, 125, 180, null);
+		if (pack1.Var.flammenanimation == 0) {
+			g.drawImage(pack1.Var.iflamme1, pack1.Var.x -41 , pack1.Var.y +50 , 125, 180, null);
+		} else if (pack1.Var.flammenanimation == 1) {
+			g.drawImage(pack1.Var.iflamme2, pack1.Var.x -41, pack1.Var.y +50, 125, 180, null);
 
 		}*/
 		
 		/*SCHROTT
 		
 		for (int i = 0; i <= 4; i++) {
-			g.drawImage(Var.ischrott1, Var.schrottx1[i], Var.schrotty1[i], 48, 38, null);
+			g.drawImage(pack1.Var.ischrott1, pack1.Var.schrottx1[i], pack1.Var.schrotty1[i], 48, 38, null);
 		}
 		for (int i = 0; i <= 1; i++) {
-			g.drawImage(Var.ischrott2, Var.schrottx2[i], Var.schrotty2[i], 48, 38, null);
+			g.drawImage(pack1.Var.ischrott2, pack1.Var.schrottx2[i], pack1.Var.schrotty2[i], 48, 38, null);
 		}
-		g.drawImage(Var.ischrott3, Var.schrottx3, Var.schrotty3, 48, 38, null);*/
+		g.drawImage(pack1.Var.ischrott3, pack1.Var.schrottx3, pack1.Var.schrotty3, 48, 38, null);*/
 		
 		
 		//Sneaken bewegung 
@@ -137,16 +137,16 @@ public class Label extends JLabel {
 			
 			//boss/beine
 			if( Var.gmoveleft == false && Var.gmoveright == false || Var.bossmovec ==  true){
-				g.drawImage(Var.igbein1, Var.gx-10,Var.gy - Var.gstarty + 160,20,90, null);
+				g.drawImage(Var.igbein1, Var.gx-10, Var.gy - Var.gstarty + 160,20,90, null);
 				g.drawImage(Var.igbein2, Var.gx +30, Var.gy - Var.gstarty + 160, 20, 90, null);
 			}else if(Var.gmoveleft == true || Var.gmoveright == true){
 			if(Var.gstarty <= 0){
 				
 			if(Var.gbeinanimation == 0){
-			g.drawImage(Var.igbein1, Var.gx-10,Var.gy - Var.gstarty + 160,20,90, null);
+			g.drawImage(Var.igbein1, Var.gx-10, Var.gy - Var.gstarty + 160,20,90, null);
 			g.drawImage(Var.igbeinr1, Var.gx +10 , Var.gy - Var.gstarty + 160-20, 40, 120, null);
 			}else if(Var.beinanimation == 1 ){
-				g.drawImage(Var.igbeinr2, Var.gx,Var.gy - Var.gstarty + 160-10,40,120, null);
+				g.drawImage(Var.igbeinr2, Var.gx, Var.gy - Var.gstarty + 160-10,40,120, null);
 				g.drawImage(Var.igbein2, Var.gx +30, Var.gy - Var.gstarty + 160, 20, 90, null);
 			}
 			}
@@ -182,11 +182,11 @@ public class Label extends JLabel {
 		if( Var.angriff == true || Var.angriffhelp == true){
 			if(Var.gx > Var.x){
 			
-			g.drawImage(Var.iball, Var.p2 +Var.Ballx,  Var.p +10 , 20, 20, null);
+			g.drawImage(Var.iball, Var.p2 + Var.Ballx,  Var.p +10 , 20, 20, null);
 				Var.angriffhelp =  true;
 			}
 			if(Var.gx < Var.x){
-				g.drawImage(Var.iball, Var.p2 -Var.Ballx,  Var.p +10 , 20, 20, null);
+				g.drawImage(Var.iball, Var.p2 - Var.Ballx,  Var.p +10 , 20, 20, null);
 				Var.angriffhelp =  true;
 			}
 							
@@ -203,13 +203,13 @@ public class Label extends JLabel {
 				if(Var.angriffanimation == 0){
 					g.drawImage(Var.iarmr1, Var.x+25, Var.y, 30, 30,null);
 					g.drawImage(Var.iarmr1, Var.x-5, Var.y, 40, 30, null);
-					 g.drawImage(Var.ianball1, Var.x +20,Var.y-5 , 40	,40,null);
+					 g.drawImage(Var.ianball1, Var.x +20, Var.y-5 , 40	,40,null);
 					 
 			 
 				}else if (Var.angriffanimation == 1){
 					g.drawImage(Var.iarmr1, Var.x+25, Var.y, 30, 30,null);
 					g.drawImage(Var.iarmr1, Var.x-5, Var.y, 40, 30, null);
-					g.drawImage(Var.ianball2, Var.x +20,Var.y-5 , 40	,40,null);
+					g.drawImage(Var.ianball2, Var.x +20, Var.y-5 , 40	,40,null);
 				}else if (Var.angriffanimation > 1){
 					g.drawImage(Var.iarmr1, Var.x+25, Var.y, 30, 30,null);
 					g.drawImage(Var.iarmr1, Var.x-5, Var.y, 40, 30, null);
@@ -220,13 +220,13 @@ public class Label extends JLabel {
 				if(Var.angriffanimation == 0){
 					g.drawImage(Var.iarmr2, Var.x+5, Var.y+4, 30, 30,null);
 					g.drawImage(Var.iarmr2, Var.x-20, Var.y+4, 40, 30, null);
-					 g.drawImage(Var.ianball1, Var.x -20,Var.y-1 , 40	,40,null);
+					 g.drawImage(Var.ianball1, Var.x -20, Var.y-1 , 40	,40,null);
 					 
 			 
 				}else if (Var.angriffanimation == 1){
 					g.drawImage(Var.iarmr2, Var.x+5, Var.y+4, 30, 30,null);
 					g.drawImage(Var.iarmr2, Var.x-20, Var.y+4, 40, 30, null);
-					 g.drawImage(Var.ianball1, Var.x -20,Var.y -1 , 40	,40,null);
+					 g.drawImage(Var.ianball1, Var.x -20, Var.y -1 , 40	,40,null);
 				}else if (Var.angriffanimation > 1){
 					g.drawImage(Var.iarmr2, Var.x+5, Var.y, 30, 30,null);
 					g.drawImage(Var.iarmr2, Var.x-20, Var.y, 40, 30, null);
@@ -239,13 +239,13 @@ public class Label extends JLabel {
 			if(Var.angriffanimation == 0){
 				g.drawImage(Var.iarmr1, Var.x+25, Var.y+20, 30, 30,null);
 				g.drawImage(Var.iarmr1, Var.x-5, Var.y+20, 40, 30, null);
-				 g.drawImage(Var.ianball1, Var.x +20,Var.y+15 , 40	,40,null);
+				 g.drawImage(Var.ianball1, Var.x +20, Var.y+15 , 40	,40,null);
 				 
 		 
 			}else if (Var.angriffanimation == 1){
 				g.drawImage(Var.iarmr1, Var.x+25, Var.y+20, 30, 30,null);
 				g.drawImage(Var.iarmr1, Var.x-5, Var.y+20, 40, 30, null);
-				g.drawImage(Var.ianball2, Var.x +20,Var.y+15 , 40	,40,null);
+				g.drawImage(Var.ianball2, Var.x +20, Var.y+15 , 40	,40,null);
 			}else if (Var.angriffanimation > 1){
 				g.drawImage(Var.iarmr1, Var.x+25, Var.y+20, 30, 30,null);
 				g.drawImage(Var.iarmr1, Var.x-5, Var.y+20, 40, 30, null);
@@ -278,7 +278,7 @@ public class Label extends JLabel {
 		//Patickel
 						if(Var.moveleft == true  && Var.y >= Var.screenheight -230 || Var.moveright == true && Var.y >= Var.screenheight -230 && Var.movedown == false){
 			for(int i = 0; i< 9; i++){
-				g.drawImage(Var.iEffeckt1, Var.x + Var.effecktx1[i] -3 ,Var.y - Var.effeckty1[i]+100  , 5,5,null);
+				g.drawImage(Var.iEffeckt1, Var.x + Var.effecktx1[i] -3 , Var.y - Var.effeckty1[i]+100  , 5,5,null);
 	}}
 		//Herzen
 						if(Var.herzen == 3 ){
@@ -305,7 +305,7 @@ public class Label extends JLabel {
 						/*GEGNER
 
 		for (int i = 0; i < 4; i++) {
-			g.drawImage(Var.igegner1, Var.gegnerx[i], Var.gegnery[i], 80, 60, null);
+			g.drawImage(pack1.Var.igegner1, pack1.Var.gegnerx[i], pack1.Var.gegnery[i], 80, 60, null);
 		
 		}*/
 		}

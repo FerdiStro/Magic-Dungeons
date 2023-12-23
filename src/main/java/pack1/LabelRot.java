@@ -16,9 +16,9 @@ public class LabelRot extends JLabel{
 		Graphics2D g2d = (Graphics2D) g;
 		AffineTransform old = g2d.getTransform();
 				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-				g2d.rotate(Math.toRadians(Var.bossrotta+90),Var.gx + 40, Var.gy-5-Var.gstarty);
+				g2d.rotate(Math.toRadians(Var.bossrotta+90), Var.gx + 40, Var.gy-5- Var.gstarty);
 		
-			g.drawImage(Var.iwaffe1, Var.gx+10+Var.bossrotta, Var.gy-5-Var.gstarty+100,150,50,null);	
+			g.drawImage(Var.iwaffe1, Var.gx+10+ Var.bossrotta, Var.gy-5- Var.gstarty+100,150,50,null);
 				 
 		
 	
@@ -32,11 +32,11 @@ public class LabelRot extends JLabel{
 		
 	
 		
-	/*if(Var.bossrotta < 90){
-			Var.bossrotta =+ 1;
-			if(Var.bossrotta <= 90-5){
+	/*if(pack1.Var.bossrotta < 90){
+			pack1.Var.bossrotta =+ 1;
+			if(pack1.Var.bossrotta <= 90-5){
 				
-			Var.bossrotta =- 90;
+			pack1.Var.bossrotta =- 90;
 		}
 
 		}		*/

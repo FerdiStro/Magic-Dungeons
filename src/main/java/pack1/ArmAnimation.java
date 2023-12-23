@@ -54,7 +54,7 @@ public class ArmAnimation{
 			@Override
 			public void run(){
 				if(Var.angriff == true || Var.angriffhelp == true){
-					//System.out.println(Var.angriffanimation);
+					//System.out.println(pack1.Var.angriffanimation);
 					
 					
 					

@@ -10,7 +10,7 @@ public class Gui {
 	public Gui() {
 		//Frame Game
 		Var.jf1 = new JFrame();
-		Var.jf1.setSize(Var.screenwidth,Var.screenheight);
+		Var.jf1.setSize(Var.screenwidth, Var.screenheight);
 		Var.jf1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Var.jf1.setLocationRelativeTo(null);
 		Var.jf1.setLayout(null);
@@ -26,17 +26,17 @@ public class Gui {
 		Var.lbl1 = new Label ();
 		Var.lblrot = new LabelRot ();
 	
-		Var.lbl1.setBounds(0,0,Var.screenwidth,Var.screenheight);
+		Var.lbl1.setBounds(0,0, Var.screenwidth, Var.screenheight);
 		
 		
 		
-		Var.lblrot.setBounds(0,0,Var.screenwidth, Var.screenheight);
+		Var.lblrot.setBounds(0,0, Var.screenwidth, Var.screenheight);
 		Var.jf1.add(Var.lblrot);//label Rotationen
 		Var.jf1.add(Var.lbl1);
 		
 		//Menue
 		Var.lbl2 = new LabelM ();
-		Var.lbl2.setBounds(0,0,Var.screenwidth , Var.screenheight);
+		Var.lbl2.setBounds(0,0, Var.screenwidth , Var.screenheight);
 		
 		Var.jf1.add(Var.lbl2);
 		Timer timer = new Timer();
@@ -47,8 +47,8 @@ public class Gui {
 			@Override
 			public void run() {
 				
-				Var.lbl1.setVisible(Var.lbl1b);//Var.lbl1b = true
-				Var.lbl2.setVisible(Var.lbl2b);//Var.lbl2b
+				Var.lbl1.setVisible(Var.lbl1b);//pack1.Var.lbl1b = true
+				Var.lbl2.setVisible(Var.lbl2b);//pack1.Var.lbl2b
 				Var.lblrot.setVisible(true);
 				
 			}

@@ -1,8 +1,13 @@
+import pack1.PlayerMovement;
 import pack1.*;
+//import screens.Gui;
+import screens.menu.LabelM;
+
+import java.io.IOException;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		new Gui();
 		new Var();
 		new KeyHandler();
@@ -24,6 +29,13 @@ public class Main {
 		new BossHit();
 		new RotHilf();
 		new Systemout();		//Consolen ausgabe
+
+
+//		LabelM menu  = new LabelM();
+
+//		Gui gui =  new Gui();
+
+
 		
 	}
 
