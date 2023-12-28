@@ -35,7 +35,7 @@ Menu-Screen: <br>
 ## To-dos: 
 
 - update class-structure (remove static use in classes)
-- creating a config system
+- creating a config system ✓
 - creating a Texturepack system to switch easily between test textures
 - creating a debug menu
 - rework boss
