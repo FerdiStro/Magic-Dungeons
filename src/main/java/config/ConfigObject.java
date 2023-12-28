@@ -1,6 +1,8 @@
 package config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import config.types.ConfigTypes;
+import config.types.ScopeType;
 import lombok.*;
 
 import java.util.List;
@@ -19,6 +21,8 @@ public class ConfigObject {
     private String data;
     @JsonProperty
     private List<ConfigObject> values;
+    @JsonProperty
+    private ScopeType scope;
 
 
 

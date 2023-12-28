@@ -1,14 +1,26 @@
+import bussystem.BusSystem;
 import pack1.PlayerMovement;
 import pack1.*;
-//import screens.Gui;
+import screens.Gui;
+
+import screens.Test;
 import screens.menu.LabelM;
 
 import java.io.IOException;
 
 public class Main {
 
-	public static void main(String[] args){
-		new Gui();
+	public static void main(String[] args) throws IOException, InterruptedException {
+		//state System init
+		BusSystem busSystem =  new BusSystem() ;
+
+
+
+
+
+
+
+//		new Gui();
 		new Var();
 		new KeyHandler();
 		new LabelRot();
@@ -33,7 +45,8 @@ public class Main {
 
 //		LabelM menu  = new LabelM();
 
-//		Gui gui =  new Gui();
+      	new Gui(busSystem);
+		new Test(busSystem);
 
 
 		
