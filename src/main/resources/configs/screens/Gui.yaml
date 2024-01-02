@@ -2,11 +2,11 @@
 values:
   - name: screenHeight
     type: integer
-    data: 400
+    data: 600
     scope: global
   - name: screenWeight
     type: integer
-    data: 400
+    data: 800
     scope: global
   - name: gameTitle
     type: string

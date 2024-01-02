@@ -1,4 +1,6 @@
-package pack1;
+package pack1.remove;
+
+import pack1.*;
 
 import javax.swing.*;
 import java.awt.event.KeyListener;
@@ -23,8 +25,8 @@ public class Gui {
 		//Frame Menue
 	
 		//Spiel
-		Var.lbl1 = new Label ();
-		Var.lblrot = new LabelRot ();
+		Var.lbl1 = new Label();
+		Var.lblrot = new LabelRot();
 	
 		Var.lbl1.setBounds(0,0, Var.screenwidth, Var.screenheight);
 		
@@ -35,7 +37,7 @@ public class Gui {
 		Var.jf1.add(Var.lbl1);
 		
 		//Menue
-		Var.lbl2 = new LabelM ();
+		Var.lbl2 = new LabelM();
 		Var.lbl2.setBounds(0,0, Var.screenwidth , Var.screenheight);
 		
 		Var.jf1.add(Var.lbl2);
@@ -46,6 +48,7 @@ public class Gui {
 			
 			@Override
 			public void run() {
+				System.out.println("test");
 				
 				Var.lbl1.setVisible(Var.lbl1b);//pack1.Var.lbl1b = true
 				Var.lbl2.setVisible(Var.lbl2b);//pack1.Var.lbl2b

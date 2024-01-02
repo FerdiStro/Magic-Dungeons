@@ -6,11 +6,15 @@ import screens.Gui;
 import screens.Test;
 import screens.menu.LabelM;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args) throws IOException, InterruptedException, UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+
 		//state System init
 		BusSystem busSystem =  new BusSystem() ;
 
@@ -20,7 +24,7 @@ public class Main {
 
 
 
-//		new Gui();
+
 		new Var();
 		new KeyHandler();
 		new LabelRot();
@@ -43,10 +47,10 @@ public class Main {
 		new Systemout();		//Consolen ausgabe
 
 
-//		LabelM menu  = new LabelM();
+
 
       	new Gui(busSystem);
-		new Test(busSystem);
+
 
 
 		
