@@ -26,5 +26,9 @@ public class BusSystem {
         store.save(name, data);
 
     }
+    public <T> void saveInit(String name, T data, boolean isDefault) {
+        store.saveInit(name, data, isDefault);
+
+    }
 
 }

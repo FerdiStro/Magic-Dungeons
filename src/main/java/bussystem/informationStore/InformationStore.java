@@ -3,16 +3,18 @@ package bussystem.informationStore;
 public interface InformationStore {
 
 
-    public void addObserver(Observer observer);
+     void addObserver(Observer observer);
 
-    public void notifyAllObservers();
+     void notifyAllObservers();
 
-    public void notifyObserverByName(String observerName);
-
-
-    public <T> T get(String name, Class<T> type);
-    public <T> void save(String name, T data);
+     void notifyObserverByName(String observerName);
 
 
+     <T> T get(String name, Class<T> type);
+     <T> void save(String name, T data);
+
+
+
+     <T> void saveInit(String name, T data, boolean isDefault);
 
 }
