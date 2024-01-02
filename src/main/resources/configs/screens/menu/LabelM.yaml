@@ -1,0 +1,12 @@
+---
+values:
+  - name: ibackM
+    type: string
+    data: Menu/HintergrundM.png
+    scope: local
+  - name: iheadline
+    type: string
+    data: Menu/Headline.png
+    scope: local
+
+

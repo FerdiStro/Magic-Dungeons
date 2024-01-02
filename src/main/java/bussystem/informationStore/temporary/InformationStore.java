@@ -44,4 +44,10 @@ public class InformationStore implements bussystem.informationStore.InformationS
         notifyAllObservers();
 
     }
+
+    @Override
+    public <T> void saveInit(String name, T data, boolean isDefault) {
+        this.name =  name;
+        this.data.put(name, data);
+    }
 }

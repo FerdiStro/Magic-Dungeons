@@ -40,7 +40,6 @@ public class Var {
 	static boolean lbl1b = false, lbl2b= true;
 	
 	static Label lbl1;
-	static LabelM lbl2;
 	static LabelRot lblrot;
 
 	static BufferedImage ib1, ib2;

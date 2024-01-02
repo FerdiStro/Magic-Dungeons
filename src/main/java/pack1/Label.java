@@ -50,7 +50,8 @@ public class Label extends JLabel {
 			g.drawImage(pack1.Var.ischrott2, pack1.Var.schrottx2[i], pack1.Var.schrotty2[i], 48, 38, null);
 		}
 		g.drawImage(pack1.Var.ischrott3, pack1.Var.schrottx3, pack1.Var.schrotty3, 48, 38, null);*/
-		
+
+			System.out.println("test");
 		
 		//Sneaken bewegung 
 		if(Var.movedown == true){
