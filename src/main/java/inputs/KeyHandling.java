@@ -41,37 +41,69 @@ public class KeyHandling  implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        Logger.info("Key-Pressed: " + e.getKeyCode());
 
         boolean maniLabelVisible = busSystem.get("lbl1b", Boolean.class);
         if(maniLabelVisible){
+            if (e.getKeyCode() == KeyEvent.VK_A) {
+                busSystem.save("moveLeft", true);
+                Logger.debug("moveLeft == true");
+            }
+            if (e.getKeyCode() == KeyEvent.VK_D) {
+                busSystem.save("moveRight", true);
+                Logger.debug("moveRight == true");
+            }
+
+
                 //...
+
+
+//            busSystem.save("defaultBackground", "iboss1background");
+
+
+
+            busSystem.updateGraphics();
         }
 
-        //Menu logic
+
         if(busSystem.get("lbl2b", Boolean.class)){
-            boolean menuUp           = busSystem.get("menuUp", Boolean.class);
-            boolean menuDown         = busSystem.get("menuDown", Boolean.class);
-            if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP && !menuUp) {
-                busSystem.save("menuDown", false);
-                busSystem.save("menuUp", true);
-                busSystem.updateGraphics();
-            }
-            if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN && !menuDown) {
-                busSystem.save("menuDown", true);
-                busSystem.save("menuUp", false);
-                busSystem.updateGraphics();
-            }
-            if (e.getKeyCode() == KeyEvent.VK_ENTER &&  menuUp){
-                busSystem.save("lbl2b", false);
-                busSystem.save("lbl1b", true);
-            }
+            menuLogicPressed(e);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        boolean maniLabelVisible = busSystem.get("lbl1b", Boolean.class);
+        if(maniLabelVisible){
+            if (e.getKeyCode() == KeyEvent.VK_A) {
+                busSystem.save("moveleft", false);
+                Logger.debug("moveLeft == false");
+            }
+            if (e.getKeyCode() == KeyEvent.VK_D) {
+                busSystem.save("moveright", false);
+                Logger.debug("moveright == false");
 
+            }
+        }
+    }
+
+
+    private void menuLogicPressed(KeyEvent e){
+        boolean menuUp           = busSystem.get("menuUp", Boolean.class);
+        boolean menuDown         = busSystem.get("menuDown", Boolean.class);
+        if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP && !menuUp) {
+            busSystem.save("menuDown", false);
+            busSystem.save("menuUp", true);
+            busSystem.updateGraphics();
+        }
+        if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN && !menuDown) {
+            busSystem.save("menuDown", true);
+            busSystem.save("menuUp", false);
+            busSystem.updateGraphics();
+        }
+        if (e.getKeyCode() == KeyEvent.VK_ENTER &&  menuUp){
+            busSystem.save("lbl2b", false);
+            busSystem.save("lbl1b", true);
+        }
     }
 
 }

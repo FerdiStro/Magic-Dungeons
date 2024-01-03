@@ -7,7 +7,8 @@ import inputs.KeyHandling;
 import logger.Logger;
 import pack1.Label;
 import pack1.LabelRot;
-import screens.menu.LabelM;
+import screens.game.GameLabel;
+import screens.menu.MenuLabel;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -18,9 +19,9 @@ public class Gui implements ConfigLoader, StateObserver {
     private final JFrame frame;
     private final BusSystem busSystem;
     //todo: rename vars when structure is ready
-    private final Label lbl1;
+    private final GameLabel lbl1;
     private final LabelRot lablrot;
-    private final LabelM menuLabel;
+    private final MenuLabel menuLabel;
 
 
     public Gui(BusSystem busSystem) throws IOException {
@@ -63,7 +64,7 @@ public class Gui implements ConfigLoader, StateObserver {
          */
         //Main-label
         busSystem.saveInit("lbl1b", false);
-        this.lbl1 = new Label();
+        this.lbl1 = new GameLabel(busSystem);
         this.lbl1.setBounds(0,0, busSystem.get("screenWidth", Integer.class), busSystem.get("screenHeight", Integer.class));
 
 
@@ -74,7 +75,7 @@ public class Gui implements ConfigLoader, StateObserver {
 
         //Menu-label
         busSystem.saveInit("lbl2b", true);
-        this.menuLabel =  new LabelM(busSystem);
+        this.menuLabel =  new MenuLabel(busSystem);
         this.menuLabel.setBounds(0,0, busSystem.get("screenWidth", Integer.class), busSystem.get("screenHeight", Integer.class));
 
 
@@ -85,9 +86,9 @@ public class Gui implements ConfigLoader, StateObserver {
 
 
         SwingUtilities.invokeLater(() -> {
-            this.lbl1.setVisible(busSystem.get("lbl1b", Boolean.class));
-            this.menuLabel.setVisible(busSystem.get("lbl2b", Boolean.class));
-            Logger.success("SET TRUE");
+            this.lbl1.setVisible(false);
+            this.menuLabel.setVisible(true);
+            Logger.success("Set menuLabel true and gameLabel false");
         });
 
 
@@ -109,15 +110,11 @@ public class Gui implements ConfigLoader, StateObserver {
                 SwingUtilities.invokeLater(() -> {
                     this.lbl1.setVisible(busSystem.get("lbl1b", Boolean.class));
                     this.menuLabel.setVisible(busSystem.get("lbl2b", Boolean.class));
-                    Logger.success("SET TRUE");
+                    Logger.success("Set menuLabel false and gameLabel true");
                     this.menuLabel.disposeResources();
-                    Logger.success("Eliminate Menu");
+                    Logger.info("Eliminate Menu");
                 });
             }
         }
-
-
-
-
     }
 }

@@ -319,7 +319,7 @@ public class Label extends JLabel {
 				 
 			
 						
-		repaint(); // fuer alle frames nicht nur fuer einen
+		 // fuer alle frames nicht nur fuer einen
 
 	}
 	

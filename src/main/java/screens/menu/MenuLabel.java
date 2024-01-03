@@ -9,11 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
+public class MenuLabel extends JLabel implements ConfigLoader, GraphicObserver {
     /*
         Config and busSystem
      */
@@ -41,7 +39,7 @@ public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
 
 
 
-    public LabelM(BusSystem busSystem) throws IOException {
+    public MenuLabel(BusSystem busSystem) throws IOException {
 
         /*
           Load configs for this class. Also add these class to the Graphics Observer
@@ -68,13 +66,16 @@ public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
 
     }
 
+    private int width;
+    private int height;
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int width   = busSystem.get("screenWidth", Integer.class);
-        int height  = busSystem.get("screenHeight", Integer.class);
+        width   = busSystem.get("screenWidth", Integer.class);
+        height  = busSystem.get("screenHeight", Integer.class);
         boolean menuUp      = busSystem.get("menuUp", Boolean.class);
         boolean menuDown    = busSystem.get("menuDown", Boolean.class);
 
@@ -124,7 +125,7 @@ public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
 
     @Override
     public void updateGraphics() {
-        repaint(0,0 ,busSystem.get("screenWidth", Integer.class) , busSystem.get("screenHeight", Integer.class));
+        repaint(0,0 ,width , height);
     }
 
 

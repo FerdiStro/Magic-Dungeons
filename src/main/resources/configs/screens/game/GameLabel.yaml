@@ -1,0 +1,6 @@
+---
+values:
+  - name: defaultBackground
+    type: string
+    data: ib1
+    scope: local
