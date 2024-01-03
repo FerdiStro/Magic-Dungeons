@@ -17,9 +17,6 @@ public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
      */
     HashMap<String, Object> configs;
     private final BusSystem busSystem;
-    //Key inputs
-    private boolean menuUp;
-    private boolean menuDown;
 
     /*
         All Images in which needed in the Menu
@@ -73,8 +70,8 @@ public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
 
         int width   = busSystem.get("screenWidth", Integer.class);
         int height  = busSystem.get("screenHeight", Integer.class);
-        menuUp      = busSystem.get("menuUp", Boolean.class);
-        menuDown    = busSystem.get("menuDown", Boolean.class);
+        boolean menuUp      = busSystem.get("menuUp", Boolean.class);
+        boolean menuDown    = busSystem.get("menuDown", Boolean.class);
 
         //Background and Logo
         g2d.drawImage(backgroundImage, 0           , 0                   , width,        height, null);
