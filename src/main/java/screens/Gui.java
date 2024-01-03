@@ -98,6 +98,7 @@ public class Gui implements ConfigLoader, StateObserver {
     public void update(String name) {
 
         if(lbl2 != null && lbl1 != null){
+            //todo: all bufferImage in Menu-Label for saving Memory
             SwingUtilities.invokeLater(() -> {
                 this.lbl1.setVisible(busSystem.get("lbl1b", Boolean.class));
                 this.lbl2.setVisible(busSystem.get("lbl2b", Boolean.class));
