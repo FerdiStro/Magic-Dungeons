@@ -2,6 +2,7 @@ package screens;
 
 
 import bussystem.BusSystem;
+import logger.Logger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +13,11 @@ public class Test {
     public Test(BusSystem busSystem) throws InterruptedException {
         this.busSystem = busSystem;
         TimeUnit.SECONDS.sleep(5);
-        busSystem.save("screenHeight", 1000);
+        Logger.info("update");
+
+        busSystem.save("screenWidth", 200);
+        busSystem.updateGraphics();
+
 
         //test Class
 

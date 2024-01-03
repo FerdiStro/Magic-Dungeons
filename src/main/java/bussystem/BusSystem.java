@@ -1,34 +1,47 @@
 package bussystem;
 
 
+import bussystem.graphicState.GraphicObserver;
+import bussystem.graphicState.GraphicStore;
 import bussystem.informationStore.InformationStore;
-import bussystem.informationStore.Observer;
+import bussystem.informationStore.StateObserver;
 
 public class BusSystem {
 
-    private final InformationStore store;
+    private final InformationStore informationStore;
+    private final GraphicStore graphicStore;
 
     public BusSystem(){
         //one Store for each bus-System
-        this.store  = new bussystem.informationStore.temporary.InformationStore();
+        this.informationStore = new bussystem.informationStore.temporary.InformationStore();
+        this.graphicStore     = new GraphicStore();
     }
 
 
-    public void addListener(Observer observer){
-        store.addObserver(observer);
+    public void addListener(StateObserver stateObserver){
+        informationStore.addObserver(stateObserver);
+    }
+    public void addListener(GraphicObserver observer){
+        graphicStore.addGraphicObserver(observer);
     }
 
     public <T> T get(String name, Class<T> t){
-        return store.get(name,  t);
+        return informationStore.get(name,  t);
     }
 
     public <T> void save(String name, T data) {
-        store.save(name, data);
+        informationStore.save(name, data);
 
     }
-    public <T> void saveInit(String name, T data, boolean isDefault) {
-        store.saveInit(name, data, isDefault);
-
+    public <T> void saveInit(String name, T data) {
+        informationStore.saveInit(name, data);
     }
+
+    public void updateGraphics(){
+        graphicStore.notifyAllObservers();
+    }
+
+
+
 
 }

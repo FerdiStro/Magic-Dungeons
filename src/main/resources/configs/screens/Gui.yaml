@@ -4,13 +4,21 @@ values:
     type: integer
     data: 600
     scope: global
-  - name: screenWeight
+
+  - name: screenWidth
     type: integer
     data: 800
+    info:  with don't go under 600
     scope: global
+
   - name: gameTitle
     type: string
-    data: game
+    data: Magic-Dungeon
+    scope: local
+
+  - name: fullScreen
+    type: bol
+    data: false
     scope: local
 
 

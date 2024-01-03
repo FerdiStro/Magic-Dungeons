@@ -37,7 +37,7 @@ public class Var {
 	static boolean kollidiert = false, verloren =false;
 	static boolean Backmove = false;
 	static boolean kollH1 = false , kollhelpH1 = true;
-	static boolean lbl1b = false, lbl2b= true;
+	static boolean lbl1b = true, lbl2b= true;
 	
 	static Label lbl1;
 	static LabelRot lblrot;
