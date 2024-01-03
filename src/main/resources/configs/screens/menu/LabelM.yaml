@@ -1,12 +1,33 @@
 ---
 values:
-  - name: ibackM
+  - name: background
     type: string
     data: Menu/HintergrundM.png
     scope: local
-  - name: iheadline
+
+  - name: logo
     type: string
     data: Menu/Headline.png
+    scope: local
+
+  - name: start-button-0
+    type: string
+    data: Menu/Start.png
+    scope: local
+
+  - name: start-button-1
+    type: string
+    data: Menu/Start2.png
+    scope: local
+
+  - name: option-button-0
+    type: string
+    data: Menu/Optionen.png
+    scope: local
+
+  - name: option-button-1
+    type: string
+    data: Menu/Optionen2.png
     scope: local
 
 

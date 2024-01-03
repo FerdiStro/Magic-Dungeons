@@ -1,4 +1,6 @@
 package pack1;
+import logger.Logger;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,6 +14,8 @@ public class Label extends JLabel {
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
+
 		
 		
 		Graphics2D g2d = (Graphics2D) g;
@@ -25,8 +29,10 @@ public class Label extends JLabel {
 		if(Var.Boss == false){
 		g.drawImage(Var.ib1, Var.backgroundX1, 0, 800 , 600, null);
 		g.drawImage(Var.ib2, Var.backgroundX2,0 ,800, 600, null);
+
 		}else if(Var.Boss == true){
 			g.drawImage(Var.iboss1background, 0, 0, 800, 600, null);
+
 		}
 
 		

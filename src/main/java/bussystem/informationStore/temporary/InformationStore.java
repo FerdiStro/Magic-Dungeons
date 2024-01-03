@@ -1,6 +1,6 @@
 package bussystem.informationStore.temporary;
 
-import bussystem.informationStore.Observer;
+import bussystem.informationStore.StateObserver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,21 +8,21 @@ import java.util.List;
 
 public class InformationStore implements bussystem.informationStore.InformationStore {
 
-    private List<Observer> observers = new ArrayList<>();
+    private List<StateObserver> stateObservers = new ArrayList<>();
     private HashMap<String,Object > data = new HashMap<>();
 
     private String name;
 
     @Override
-    public void addObserver(Observer observer){
-        this.observers.add(observer);
+    public void addObserver(StateObserver stateObserver){
+        this.stateObservers.add(stateObserver);
 
     }
 
     @Override
     public void notifyAllObservers(){
-        for(Observer observer : observers){
-            observer.listen(name);
+        for(StateObserver stateObserver : stateObservers){
+            stateObserver.update(name);
         }
     }
 
@@ -46,7 +46,7 @@ public class InformationStore implements bussystem.informationStore.InformationS
     }
 
     @Override
-    public <T> void saveInit(String name, T data, boolean isDefault) {
+    public <T> void saveInit(String name, T data) {
         this.name =  name;
         this.data.put(name, data);
     }

@@ -3,7 +3,7 @@ package bussystem.informationStore;
 public interface InformationStore {
 
 
-     void addObserver(Observer observer);
+     void addObserver(StateObserver stateObserver);
 
      void notifyAllObservers();
 
@@ -15,6 +15,6 @@ public interface InformationStore {
 
 
 
-     <T> void saveInit(String name, T data, boolean isDefault);
+     <T> void saveInit(String name, T data );
 
 }

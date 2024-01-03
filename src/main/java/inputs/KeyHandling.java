@@ -1,14 +1,10 @@
 package inputs;
 
 import bussystem.BusSystem;
-import bussystem.informationStore.Observer;
 import logger.Logger;
-import pack1.KeyHandler;
-import pack1.Var;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.lang.ref.PhantomReference;
 
 public class KeyHandling  implements KeyListener {
 
@@ -30,8 +26,8 @@ public class KeyHandling  implements KeyListener {
 
 
         //Init default values
-        busSystem.saveInit("menuUp", true, true);
-        busSystem.saveInit("menuDown", false ,  true);
+        busSystem.saveInit("menuUp", true);
+        busSystem.saveInit("menuDown", false);
 
 
     }
@@ -53,19 +49,24 @@ public class KeyHandling  implements KeyListener {
         }
 
         //Menu logic
-        boolean menuUp           = busSystem.get("menuUp", Boolean.class);
-        boolean menuDown         = busSystem.get("menuDown", Boolean.class);
-        if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP && menuUp == false) {
-            busSystem.save("menuDown", false);
-            busSystem.save("menuUp", true);
+        if(busSystem.get("lbl2b", Boolean.class)){
+            boolean menuUp           = busSystem.get("menuUp", Boolean.class);
+            boolean menuDown         = busSystem.get("menuDown", Boolean.class);
+            if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP && !menuUp) {
+                busSystem.save("menuDown", false);
+                busSystem.save("menuUp", true);
+                busSystem.updateGraphics();
+            }
+            if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN && !menuDown) {
+                busSystem.save("menuDown", true);
+                busSystem.save("menuUp", false);
+                busSystem.updateGraphics();
+            }
+            if (e.getKeyCode() == KeyEvent.VK_ENTER &&  menuUp){
+                busSystem.save("lbl2b", false);
+                busSystem.save("lbl1b", true);
+            }
         }
-        if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN && menuDown == false) {
-            busSystem.save("menuDown", true);
-            busSystem.save("menuUp", false);
-        }
-
-
-
     }
 
     @Override
