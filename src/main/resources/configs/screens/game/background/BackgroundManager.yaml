@@ -1,0 +1,18 @@
+---
+values:
+
+
+  - name: ib1
+    type: string
+    data: b1.0.png
+    scope: local
+
+  - name: ib2
+    type: string
+    data: b1.1.png
+    scope: local
+
+  - name: iboss1background
+    type: string
+    data: Hintergrund/Boss1.png
+    scope: local

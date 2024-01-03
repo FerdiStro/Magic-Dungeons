@@ -33,24 +33,24 @@ public class Main {
 
 
 
-		new Var();
-//		new KeyHandler();
-		new LabelRot();
-		new Label();
-		new Background();
-		new PlayerMovement();
-		new ArmAnimation();
-		new GegnerMovement();//		new SchrottMovement();
-		new GegnerKollision();
-		new SchrottKollision();
-		new Hindernisse();
-		new Hindernisszusammen();
-		new PatickelSystem();
-		new Herzen();
-		new BossMove();
-		new BossHit();
-		new RotHilf();
-		new Systemout();		//Consolen ausgabe
+//		new Var();
+////		new KeyHandler();
+//		new LabelRot();
+//		new Label();
+//		new Background();
+//		new PlayerMovement();
+//		new ArmAnimation();
+//		new GegnerMovement();//		new SchrottMovement();
+//		new GegnerKollision();
+//		new SchrottKollision();
+//		new Hindernisse();
+//		new Hindernisszusammen();
+//		new PatickelSystem();
+//		new Herzen();
+//		new BossMove();
+//		new BossHit();
+//		new RotHilf();
+//		new Systemout();		//Consolen ausgabe
 
 
 

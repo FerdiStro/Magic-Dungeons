@@ -7,7 +7,8 @@ import inputs.KeyHandling;
 import logger.Logger;
 import pack1.Label;
 import pack1.LabelRot;
-import screens.menu.LabelM;
+import screens.game.GameLabel;
+import screens.menu.MenuLabel;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -18,9 +19,9 @@ public class Gui implements ConfigLoader, StateObserver {
     private final JFrame frame;
     private final BusSystem busSystem;
     //todo: rename vars when structure is ready
-    private final Label lbl1;
+    private final GameLabel lbl1;
     private final LabelRot lablrot;
-    private final LabelM lbl2;
+    private final MenuLabel menuLabel;
 
 
     public Gui(BusSystem busSystem) throws IOException {
@@ -63,7 +64,7 @@ public class Gui implements ConfigLoader, StateObserver {
          */
         //Main-label
         busSystem.saveInit("lbl1b", false);
-        this.lbl1 = new Label();
+        this.lbl1 = new GameLabel(busSystem);
         this.lbl1.setBounds(0,0, busSystem.get("screenWidth", Integer.class), busSystem.get("screenHeight", Integer.class));
 
 
@@ -74,18 +75,24 @@ public class Gui implements ConfigLoader, StateObserver {
 
         //Menu-label
         busSystem.saveInit("lbl2b", true);
-        this.lbl2 =  new LabelM(busSystem);
-        this.lbl2.setBounds(0,0, busSystem.get("screenWidth", Integer.class), busSystem.get("screenHeight", Integer.class));
+        this.menuLabel =  new MenuLabel(busSystem);
+        this.menuLabel.setBounds(0,0, busSystem.get("screenWidth", Integer.class), busSystem.get("screenHeight", Integer.class));
 
 
         this.frame.add(this.lbl1);
         this.frame.add(this.lablrot);
-        this.frame.add(this.lbl2);
+        this.frame.add(this.menuLabel);
 
 
 
+        SwingUtilities.invokeLater(() -> {
+            this.lbl1.setVisible(false);
+            this.menuLabel.setVisible(true);
+            Logger.success("Set menuLabel true and gameLabel false");
+        });
 
-        update(null);
+
+        update("");
     }
 
     @Override
@@ -97,12 +104,17 @@ public class Gui implements ConfigLoader, StateObserver {
     @Override
     public void update(String name) {
 
-        if(lbl2 != null && lbl1 != null){
-            SwingUtilities.invokeLater(() -> {
-                this.lbl1.setVisible(busSystem.get("lbl1b", Boolean.class));
-                this.lbl2.setVisible(busSystem.get("lbl2b", Boolean.class));
-                Logger.success("SET TRUE");
-            });
+        if(name.equals("lbl2b")){
+            Boolean menuVis = busSystem.get("lbl2b", Boolean.class);
+            if(!menuVis){
+                SwingUtilities.invokeLater(() -> {
+                    this.lbl1.setVisible(busSystem.get("lbl1b", Boolean.class));
+                    this.menuLabel.setVisible(busSystem.get("lbl2b", Boolean.class));
+                    Logger.success("Set menuLabel false and gameLabel true");
+                    this.menuLabel.disposeResources();
+                    Logger.info("Eliminate Menu");
+                });
+            }
         }
     }
 }
