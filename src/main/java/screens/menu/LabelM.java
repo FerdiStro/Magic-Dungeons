@@ -9,13 +9,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
     /*
         Config and busSystem
      */
-    HashMap<String, Object> configs;
+    private HashMap<String, Object> configs;
     private final BusSystem busSystem;
 
     /*
@@ -61,6 +63,9 @@ public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
 
         this.optionButton_0 =  ImageLoader.loadImage((String) configs.get("option-button-0"));
         this.optionButton_1 =  ImageLoader.loadImage((String) configs.get("option-button-1"));
+
+
+
     }
 
     protected void paintComponent(Graphics g) {
@@ -103,9 +108,13 @@ public class LabelM extends JLabel implements ConfigLoader, GraphicObserver {
     /*
         Flush Images when methode is no longer needed. This save Memory
      */
-    private void disposeResources() {
-        backgroundImage.flush();
-        logoImage.flush();
+    public void disposeResources() {
+        this.backgroundImage.flush();
+        this.logoImage.flush();
+        this.startButton_0.flush();
+        this.startButton_1.flush();
+        this.optionButton_0.flush();
+        this.optionButton_1.flush();
     }
 
     @Override
