@@ -37,6 +37,7 @@ public class BackgroundManager implements ConfigLoader {
         /*
             Background List, when a new Background created, need to add here.
          */
+        //todo: remove both list, backgrounds load over Config and over this list. Only Config load ist needed.
         Map<String, Background> backgroundMap =  new HashMap<>();
         backgroundMap.put("ib1", new DefaultBackground(0));
         backgroundMap.put("ib2", new DefaultBackground(1));
