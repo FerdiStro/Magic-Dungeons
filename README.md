@@ -2,6 +2,8 @@
 
 Magic-Dungeons is a game I created when I was 12. Now, armed with much more knowledge, I'm planning an update.
 
+Updated Deps: Use JDK-21.
+
 ### There are already some features (Not styles yet):
 
 Menu-Options: <br>
