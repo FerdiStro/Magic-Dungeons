@@ -7,8 +7,11 @@ import java.awt.image.BufferedImage;
 public class DefaultBackground  extends Background {
 
 
-    public DefaultBackground(Integer state){
+
+
+    public DefaultBackground(){
         super();
+
 
     }
 

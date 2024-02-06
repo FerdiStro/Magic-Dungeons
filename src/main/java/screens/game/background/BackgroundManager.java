@@ -3,7 +3,6 @@ package screens.game.background;
 import bussystem.BusSystem;
 import config.ConfigLoader;
 import config.ImageLoader;
-import logger.Logger;
 import lombok.Setter;
 import screens.game.background.boss.BossBackground;
 import screens.game.background.standard.DefaultBackground;
@@ -34,36 +33,41 @@ public class BackgroundManager implements ConfigLoader {
         this.busSystem.saveInit("defaultBackground", defaultBackground);
         load(this, busSystem);
 
-        /*
-            Background List, when a new Background created, need to add here.
-         */
-        //todo: remove both list, backgrounds load over Config and over this list. Only Config load ist needed.
+
+        //Map out of Yaml configs. For new Background add in the config-file
         Map<String, Background> backgroundMap =  new HashMap<>();
-        backgroundMap.put("ib1", new DefaultBackground(0));
-        backgroundMap.put("ib2", new DefaultBackground(1));
-        backgroundMap.put("iboss1background", new BossBackground());
+
+        for( String  key : configs.keySet() ){
+            String data =  (String) configs.get(key);
+            String backgroundType = data.split("\\|")[0];
+            String path = data.split("\\|")[1];
+            Background background = switch (backgroundType) {
+                case "default" -> new DefaultBackground();
+                case "boss" -> new BossBackground();
+                default -> null;
+            };
+
+            busSystem.saveInit(key, false);
+            if(defaultBackground.equals(key)){
+                setSelectedBackground(key);
+                busSystem.save(key, true);
+            }
+
+            background.setBusSystem(busSystem);
+            background.setBackground(ImageLoader.loadImage(path));
+
+
+            backgroundMap.put(key, background);
+
+        }
 
 
 
         this.backgrounds = backgroundMap;
         busSystem.saveInit("backgroundX", backgroundX);
         busSystem.saveInit("backgroundY", backgroundY);
-        initState();
-    }
 
-    private void  initState(){
-        for(String key: backgrounds.keySet()){
-            busSystem.saveInit(key, false);
-            if(defaultBackground.equals(key)){
-                setSelectedBackground(key);
-                busSystem.save(key, true);
-            }
-            Background background = backgrounds.get(key);
-            background.setBusSystem(busSystem);
-            background.setBackground( ImageLoader.loadImage((String) configs.get(key)));
-        }
     }
-
 
     public void draw(Graphics2D g){
         Background b = backgrounds.get(selectedBackground);
