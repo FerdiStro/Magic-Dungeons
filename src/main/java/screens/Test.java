@@ -17,14 +17,29 @@ public class Test implements StateObserver {
         TimeUnit.SECONDS.sleep(5);
         Logger.info("update");
 
-        busSystem.save("screenWidth", 200);
-        busSystem.updateGraphics();
+        updateDefaultBackground();
+
+        testBiggerScreenWith();
 
 
-        //test Class
+
+
 
 
     }
+
+    private void updateDefaultBackground(){
+        busSystem.save("defaultBackground", "iboss1background");
+        busSystem.updateGraphics();
+
+    }
+
+    //test with not x
+    private void testBiggerScreenWith(){
+        busSystem.save("backgroundX", 2);
+        busSystem.updateGraphics();
+    }
+
 
 
     @Override
