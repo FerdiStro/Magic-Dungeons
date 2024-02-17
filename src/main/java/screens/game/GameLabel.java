@@ -5,6 +5,8 @@ import bussystem.graphicState.GraphicObserver;
 import bussystem.informationStore.StateObserver;
 import config.ConfigLoader;
 import logger.Logger;
+import model.Model;
+import model.player.Player;
 import screens.game.background.BackgroundManager;
 
 import javax.swing.*;
@@ -32,6 +34,10 @@ public class GameLabel extends JLabel implements StateObserver, GraphicObserver,
     private int width;
     private int height;
 
+    private HashMap<String, Model> modelList = new HashMap<>();
+    Player player = null;
+
+    private boolean init = false;
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
@@ -43,16 +49,46 @@ public class GameLabel extends JLabel implements StateObserver, GraphicObserver,
 
 
 
-        backgroundManager.draw(g2d);
+        /*
+            Init process for objects
+         */
+        if(!init){
+            player = new Player("player", g2d, 0,  10 ,100, 200,"screens/game/models/Player" );
+            player.setHitBoxVisible(true);
+            player.addMovement();
+
+            addModel(player);
+        }
+
+
+
+//        backgroundManager.draw(g2d);
+        player.draw(g2d);
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+        init = true;
     }
 
+    private void addModel(Model model){
+        this.modelList.put(model.getName(), model);
+        this.busSystem.addListener(model.getObserver());
 
+    }
 
 
     @Override

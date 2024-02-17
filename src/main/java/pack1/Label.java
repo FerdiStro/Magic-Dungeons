@@ -26,16 +26,16 @@ public class Label extends JLabel {
 		if(Var.lbl1b ==true){
 		
 		//HINTERGURND
-		if(Var.Boss == false){
-		g.drawImage(Var.ib1, Var.backgroundX1, 0, 800 , 600, null);
-		g.drawImage(Var.ib2, Var.backgroundX2,0 ,800, 600, null);
-
-		}else if(Var.Boss == true){
-			g.drawImage(Var.iboss1background, 0, 0, 800, 600, null);
-
-		}
-
-		
+//		if(Var.Boss == false){
+//		g.drawImage(Var.ib1, Var.backgroundX1, 0, 800 , 600, null);
+//		g.drawImage(Var.ib2, Var.backgroundX2,0 ,800, 600, null);
+//
+//		}else if(Var.Boss == true){
+//			g.drawImage(Var.iboss1background, 0, 0, 800, 600, null);
+//
+//		}
+//
+//
 
 		
 		/*FLAMMEN
@@ -96,9 +96,8 @@ public class Label extends JLabel {
 			
 			
 		//Player	
-			
-		
-			//Bein
+		//Bein
+
 		if(Var.moveleft == false && Var.moveright == false ){
 			g.drawImage(Var.ibein2, Var.x+25, Var.y+50, 10, 35,null);
 			g.drawImage(Var.ibein1, Var.x+5, Var.y+50, 10, 35,null);
@@ -134,6 +133,8 @@ public class Label extends JLabel {
 			//body 
 			g.drawImage(Var.ibody, Var.x+1, Var.y, 35, 50, null);
 		}
+
+
 		//Boss
 		
 		

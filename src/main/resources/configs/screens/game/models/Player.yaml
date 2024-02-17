@@ -1,0 +1,6 @@
+---
+values:
+  - name: head
+    type: pic
+    data: /model/player/head.png
+    scope: local

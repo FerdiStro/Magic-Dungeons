@@ -10,7 +10,11 @@ public enum ConfigTypes {
         @JsonProperty("NULL")
         NULL,
         @JsonProperty("bol")
-        bol
+        bol,
+
+        @JsonProperty("pic")
+        pic
+
 }
 
 
