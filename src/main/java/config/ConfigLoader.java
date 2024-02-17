@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import config.types.ConfigTypes;
 import config.types.ScopeType;
+import model.player.Movement;
 
 import java.io.File;
 import java.io.IOException;

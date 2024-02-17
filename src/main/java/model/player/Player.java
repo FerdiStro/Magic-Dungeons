@@ -4,22 +4,28 @@ import bussystem.informationStore.StateObserver;
 import config.ConfigLoader;
 import logger.Logger;
 
+import lombok.Getter;
 import lombok.Setter;
 import model.Model;
 
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.HashMap;
 
 public class Player implements Model, StateObserver, ConfigLoader {
 
     private HashMap<String, Object> configs;
 
+
     private String name;
     @Setter
     private String path;
+
     private int x;
+
     private int y;
     private Graphics2D g;
 
@@ -27,7 +33,11 @@ public class Player implements Model, StateObserver, ConfigLoader {
     //HitBox Settings
     private int hitBoxW = 50;
     private int hitBoxH = 50;
-    private boolean hitBoxVisible;
+    private boolean hitBoxVisible = false;
+
+    // Movement
+    private Movement movement;
+    private int speed;
 
 
 
@@ -63,6 +73,8 @@ public class Player implements Model, StateObserver, ConfigLoader {
 
     }
 
+    private  BufferedImage head;
+
 
     private void init(String name, Graphics2D g, int x, int y ){
         this.x      = x;
@@ -85,6 +97,10 @@ public class Player implements Model, StateObserver, ConfigLoader {
             Logger.error("Can't load config of player objected Named: " + name);
             throw new RuntimeException(e);
         }
+
+        head =  (BufferedImage ) configs.get("head");
+
+
     }
 
 
@@ -94,6 +110,9 @@ public class Player implements Model, StateObserver, ConfigLoader {
     public void draw(Graphics2D g) {
 
 
+
+
+
         if(hitBoxVisible){
             g.setBackground(Color.RED);
             g.fillRect(x,y, hitBoxW, hitBoxH);
@@ -101,51 +120,72 @@ public class Player implements Model, StateObserver, ConfigLoader {
         }
 
 
+        g.drawImage(head, x, y, head.getWidth(), head.getHeight(), null);
+
+
 
 
 
 
     }
+    @Override
+    public void update(String name) {
+        if(this.movement != null){
+            movement.update(this, name);
+        }
+        Logger.info("X: "  + getX());
+    }
 
+    /*
+        getters and setters
+     */
 
+    public void setSpeed(Integer speed){
+        this.speed = speed;
+        if(this.movement != null){
+            movement.setSpeed(speed);
+        }
+    }
+
+    public void addMovement(){
+        this.movement = new Movement();
+    }
     @Override
     public void setHitBox(int w, int h) {
         this.hitBoxW = w;
         this.hitBoxH = h;
-
     }
-
     @Override
     public void setHitBoxVisible(boolean hitBoxVisible) {
         this.hitBoxVisible = hitBoxVisible;
-
     }
-
     @Override
     public void setName(String name) {
         this.name = name;
     }
-
     @Override
     public String getName() {
         return this.name;
     }
-
+    @Override
+    public Integer getX() {
+        return this.x;
+    }
+    @Override
+    public Integer getY() {
+        return this.y;
+    }
+    @Override
+    public void setX(Integer x) {
+        this.x = x;
+    }
+    @Override
+    public void setY(Integer y) {
+        this.y = y;
+    }
     @Override
     public StateObserver getObserver() {
         return this;
-    }
-
-
-    @Override
-    public void update(String name) {
-        if(name.equals("moveRight")){
-            this.x += x ;
-
-
-        }
-
-
     }
 
     @Override

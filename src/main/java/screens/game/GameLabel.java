@@ -52,13 +52,10 @@ public class GameLabel extends JLabel implements StateObserver, GraphicObserver,
         /*
             Init process for objects
          */
-
-
         if(!init){
-
-
-            player = new Player("Player", g2d, 0,  10 ,100, 200,"screens/game/models/Player" );
+            player = new Player("player", g2d, 0,  10 ,100, 200,"screens/game/models/Player" );
             player.setHitBoxVisible(true);
+            player.addMovement();
 
             addModel(player);
         }
