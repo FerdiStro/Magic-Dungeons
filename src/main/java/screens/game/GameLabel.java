@@ -3,28 +3,33 @@ package screens.game;
 import bussystem.BusSystem;
 import bussystem.graphicState.GraphicObserver;
 import bussystem.informationStore.StateObserver;
+import bussystem.clock.GameClock;
 import config.ConfigLoader;
 import logger.Logger;
+import lombok.Setter;
 import model.Model;
 import model.player.Player;
+import screens.GameScreen;
 import screens.game.background.BackgroundManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Observer;
 
-public class GameLabel extends JLabel implements StateObserver, GraphicObserver, ConfigLoader {
+public class GameLabel extends JLabel implements GameScreen, StateObserver, GraphicObserver, ConfigLoader {
 
     private BusSystem busSystem;
     private BackgroundManager backgroundManager;
     private HashMap<String, Object> configs;
 
+    @Setter
+    private GameClock gameClock;
+
 
     public GameLabel(BusSystem busSystem) throws IOException {
         load(this, busSystem);
-        this.busSystem =  busSystem;
+        this.busSystem = busSystem;
         busSystem.addListener((StateObserver) this);
         busSystem.addListener((GraphicObserver) this);
         this.backgroundManager =  new BackgroundManager(busSystem, (String) configs.get("defaultBackground"));
@@ -53,16 +58,16 @@ public class GameLabel extends JLabel implements StateObserver, GraphicObserver,
             Init process for objects
          */
         if(!init){
-            player = new Player("player", g2d, 0,  10 ,100, 200,"screens/game/models/Player" );
+            player = new Player("player", 0,  10 ,100, 200,"screens/game/models/Player",busSystem );
+            player.addMovement(1);
+            player.setGravity(true);
             player.setHitBoxVisible(true);
-            player.addMovement();
-
             addModel(player);
         }
 
 
 
-//        backgroundManager.draw(g2d);
+        backgroundManager.draw(g2d);
         player.draw(g2d);
 
 
@@ -86,8 +91,6 @@ public class GameLabel extends JLabel implements StateObserver, GraphicObserver,
 
     private void addModel(Model model){
         this.modelList.put(model.getName(), model);
-        this.busSystem.addListener(model.getObserver());
-
     }
 
 
@@ -111,6 +114,8 @@ public class GameLabel extends JLabel implements StateObserver, GraphicObserver,
             }
             this.backgroundManager.setBackgroundX(this.busSystem.get("backgroundX", Integer.class));
             this.backgroundManager.setBackgroundY(this.busSystem.get("backgroundY", Integer.class));
+
+
 
         }
     }

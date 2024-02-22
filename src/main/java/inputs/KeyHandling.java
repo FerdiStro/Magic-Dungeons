@@ -30,6 +30,11 @@ public class KeyHandling  implements KeyListener {
         busSystem.saveInit("menuDown", false);
 
 
+        busSystem.saveInit("moveRight", false);
+        busSystem.saveInit("moveLeft", false);
+
+
+
     }
 
 
@@ -75,12 +80,12 @@ public class KeyHandling  implements KeyListener {
         boolean maniLabelVisible = busSystem.get("lbl1b", Boolean.class);
         if(maniLabelVisible){
             if (e.getKeyCode() == KeyEvent.VK_A) {
-                busSystem.save("moveleft", false);
+                busSystem.save("moveLeft", false);
                 Logger.debug("moveLeft == false");
             }
             if (e.getKeyCode() == KeyEvent.VK_D) {
-                busSystem.save("moveright", false);
-                Logger.debug("moveright == false");
+                busSystem.save("moveRight", false);
+                Logger.debug("moveRight == false");
 
             }
         }

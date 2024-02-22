@@ -1,20 +1,29 @@
 package bussystem;
 
 
+import bussystem.clock.GameClock;
+import bussystem.clock.GameGlockObserver;
 import bussystem.graphicState.GraphicObserver;
 import bussystem.graphicState.GraphicStore;
 import bussystem.informationStore.InformationStore;
 import bussystem.informationStore.StateObserver;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BusSystem {
 
     private final InformationStore informationStore;
     private final GraphicStore graphicStore;
+    private final GameClock gameClock;
+
 
     public BusSystem(){
         //one Store for each bus-System
         this.informationStore = new bussystem.informationStore.temporary.InformationStore();
         this.graphicStore     = new GraphicStore();
+        this.gameClock        =  new GameClock();
+
     }
 
 
@@ -41,6 +50,10 @@ public class BusSystem {
         graphicStore.notifyAllObservers();
     }
 
+    public void addGameClockListener(GameGlockObserver gameGlockObserver){
+        gameClock.addListener(gameGlockObserver);
+
+    }
 
 
 

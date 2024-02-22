@@ -1,15 +1,8 @@
 import bussystem.BusSystem;
-import logger.Logger;
-import pack1.Label;
-import pack1.PlayerMovement;
-import pack1.*;
 import screens.Gui;
-
-import screens.Test;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 public class Main {

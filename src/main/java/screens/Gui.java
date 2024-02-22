@@ -5,7 +5,6 @@ import bussystem.BusSystem;
 import bussystem.informationStore.StateObserver;
 import inputs.KeyHandling;
 import logger.Logger;
-import pack1.Label;
 import pack1.LabelRot;
 import screens.game.GameLabel;
 import screens.menu.MenuLabel;
@@ -33,6 +32,7 @@ public class Gui implements ConfigLoader, StateObserver {
         load(this, busSystem);
         this.busSystem =  busSystem;
         busSystem.addListener(this);
+
 
         /*
             Init Screen with all Vars and settings.
