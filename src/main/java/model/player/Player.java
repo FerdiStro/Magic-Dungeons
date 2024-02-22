@@ -1,6 +1,6 @@
 package model.player;
 
-import bussystem.informationStore.StateObserver;
+import bussystem.BusSystem;
 import config.ConfigLoader;
 import logger.Logger;
 
@@ -12,32 +12,40 @@ import model.Model;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.HashMap;
 
-public class Player implements Model, StateObserver, ConfigLoader {
+
+public class Player implements Model, ConfigLoader {
 
     private HashMap<String, Object> configs;
 
-
-    private String name;
+    @Getter
+    private BusSystem busSystem;
+    @Getter
+    private final String  name;
     @Setter
     private String path;
 
-    private int x;
-
-    private int y;
-    private Graphics2D g;
 
 
-    //HitBox Settings
+    /*
+        HitBox-Settings
+     */
     private int hitBoxW = 50;
     private int hitBoxH = 50;
     private boolean hitBoxVisible = false;
 
-    // Movement
+    /*
+        Movement
+     */
+    @Setter
+    @Getter
     private Movement movement;
-    private int speed;
+
+    /*
+       Images
+     */
+    private  BufferedImage head;
 
 
 
@@ -47,40 +55,42 @@ public class Player implements Model, StateObserver, ConfigLoader {
     /*
         Create player with basic HitBox w = 50 ; h = 50
      */
-    public Player(String name,Graphics2D g , int x, int y  ){
-        init(name, g, x ,y );
+    public Player(String name, int x, int y, BusSystem busSystem ){
+        this.name   = name;
+        init(x ,y, busSystem);
 
 
     }
       /*
         Create player
      */
-    public Player(String name, Graphics2D g, int x ,int y, int hitBoxW , int hitBoxH){
+    public Player(String name, int x ,int y, int hitBoxW , int hitBoxH, BusSystem busSystem){
         this.hitBoxW    = hitBoxW;
         this.hitBoxH    = hitBoxH;
+        this.name   = name;
+        init( x ,y, busSystem );
 
-        init(name, g, x ,y );
 
 
     }
-
-    public Player(String name, Graphics2D g, int x ,int y, int hitBoxW , int hitBoxH, String path){
+    public Player(String name, int x ,int y, int hitBoxW , int hitBoxH, String path, BusSystem busSystem){
         this.hitBoxW    = hitBoxW;
         this.hitBoxH    = hitBoxH;
         this.path       = path;
-        init(name, g, x ,y );
+        this.name      = name;
+        init( x ,y, busSystem );
 
 
     }
 
-    private  BufferedImage head;
 
 
-    private void init(String name, Graphics2D g, int x, int y ){
-        this.x      = x;
-        this.y      = y;
-        this.name   = name;
-        this.g      = g;
+
+    private void init( int x, int y, BusSystem busSystem){
+        this.busSystem = busSystem;
+        setX(x);
+        setY(y);
+
 
 
         /*
@@ -100,6 +110,8 @@ public class Player implements Model, StateObserver, ConfigLoader {
 
         head =  (BufferedImage ) configs.get("head");
 
+        busSystem.saveInit(name + "X", x);
+        busSystem.saveInit(name + "Y", x);
 
     }
 
@@ -108,9 +120,8 @@ public class Player implements Model, StateObserver, ConfigLoader {
 
     @Override
     public void draw(Graphics2D g) {
-
-
-
+        Integer x = busSystem.get(name + "X", Integer.class);
+        Integer y = busSystem.get(name + "Y", Integer.class);
 
 
         if(hitBoxVisible){
@@ -118,38 +129,10 @@ public class Player implements Model, StateObserver, ConfigLoader {
             g.fillRect(x,y, hitBoxW, hitBoxH);
             g.drawRect(x,y, hitBoxW, hitBoxH);
         }
-
-
         g.drawImage(head, x, y, head.getWidth(), head.getHeight(), null);
-
-
-
-
-
-
-    }
-    @Override
-    public void update(String name) {
-        if(this.movement != null){
-            movement.update(this, name);
-        }
-        Logger.info("X: "  + getX());
     }
 
-    /*
-        getters and setters
-     */
 
-    public void setSpeed(Integer speed){
-        this.speed = speed;
-        if(this.movement != null){
-            movement.setSpeed(speed);
-        }
-    }
-
-    public void addMovement(){
-        this.movement = new Movement();
-    }
     @Override
     public void setHitBox(int w, int h) {
         this.hitBoxW = w;
@@ -159,34 +142,7 @@ public class Player implements Model, StateObserver, ConfigLoader {
     public void setHitBoxVisible(boolean hitBoxVisible) {
         this.hitBoxVisible = hitBoxVisible;
     }
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-    @Override
-    public String getName() {
-        return this.name;
-    }
-    @Override
-    public Integer getX() {
-        return this.x;
-    }
-    @Override
-    public Integer getY() {
-        return this.y;
-    }
-    @Override
-    public void setX(Integer x) {
-        this.x = x;
-    }
-    @Override
-    public void setY(Integer y) {
-        this.y = y;
-    }
-    @Override
-    public StateObserver getObserver() {
-        return this;
-    }
+
 
     @Override
     public void setConfig(HashMap<String, Object> configs) {
