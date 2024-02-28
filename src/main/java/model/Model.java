@@ -83,8 +83,10 @@ public interface Model {
     }
 
 
-
-
+    /*
+        Flush Images when methode is no longer needed. This save Memory
+     */
+    void disposeResources();
 
 
 

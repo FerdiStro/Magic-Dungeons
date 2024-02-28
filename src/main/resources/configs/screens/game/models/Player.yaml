@@ -4,3 +4,8 @@ values:
     type: pic
     data: /model/player/head.png
     scope: local
+
+  - name: body
+    type: pic
+    data: /model/player/body.png
+    scope: local

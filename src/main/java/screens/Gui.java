@@ -111,7 +111,7 @@ public class Gui implements ConfigLoader, StateObserver {
                     this.lbl1.setVisible(busSystem.get("lbl1b", Boolean.class));
                     this.menuLabel.setVisible(busSystem.get("lbl2b", Boolean.class));
                     Logger.success("Set menuLabel false and gameLabel true");
-                    this.menuLabel.disposeResources();
+                    this.menuLabel.destroy();
                     Logger.info("Eliminate Menu");
                 });
             }

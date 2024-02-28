@@ -46,7 +46,7 @@ public class Player implements Model, ConfigLoader {
        Images
      */
     private  BufferedImage head;
-
+    private BufferedImage body;
 
 
 
@@ -109,6 +109,7 @@ public class Player implements Model, ConfigLoader {
         }
 
         head =  (BufferedImage ) configs.get("head");
+        body =  (BufferedImage ) configs.get("body");
 
         busSystem.saveInit(name + "X", x);
         busSystem.saveInit(name + "Y", x);
@@ -130,6 +131,8 @@ public class Player implements Model, ConfigLoader {
             g.drawRect(x,y, hitBoxW, hitBoxH);
         }
         g.drawImage(head, x, y, head.getWidth(), head.getHeight(), null);
+        g.drawImage(body, x, y + head.getHeight(), body.getWidth(), head.getHeight(), null);
+
     }
 
 
@@ -141,6 +144,12 @@ public class Player implements Model, ConfigLoader {
     @Override
     public void setHitBoxVisible(boolean hitBoxVisible) {
         this.hitBoxVisible = hitBoxVisible;
+    }
+
+    @Override
+    public void disposeResources() {
+        body.flush();
+        head.flush();
     }
 
 
