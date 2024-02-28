@@ -106,17 +106,8 @@ public class MenuLabel extends JLabel implements ConfigLoader, GraphicObserver {
 
     }
 
-    /*
-        Flush Images when methode is no longer needed. This save Memory
-     */
-    public void disposeResources() {
-        this.backgroundImage.flush();
-        this.logoImage.flush();
-        this.startButton_0.flush();
-        this.startButton_1.flush();
-        this.optionButton_0.flush();
-        this.optionButton_1.flush();
-    }
+
+
 
     @Override
     public void setConfig(HashMap<String, Object> configs) {
@@ -126,6 +117,16 @@ public class MenuLabel extends JLabel implements ConfigLoader, GraphicObserver {
     @Override
     public void updateGraphics() {
         repaint(0,0 ,width , height);
+    }
+
+    @Override
+    public void destroy() {
+        this.backgroundImage.flush();
+        this.logoImage.flush();
+        this.startButton_0.flush();
+        this.startButton_1.flush();
+        this.optionButton_0.flush();
+        this.optionButton_1.flush();
     }
 
 

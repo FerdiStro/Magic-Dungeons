@@ -4,6 +4,7 @@ import bussystem.BusSystem;
 import bussystem.graphicState.GraphicObserver;
 import bussystem.informationStore.StateObserver;
 import bussystem.clock.GameClock;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import config.ConfigLoader;
 import logger.Logger;
 import lombok.Setter;
@@ -97,6 +98,14 @@ public class GameLabel extends JLabel implements GameScreen, StateObserver, Grap
     @Override
     public void updateGraphics() {
         repaint(0,0 , width, height);
+    }
+
+    @Override
+    public void destroy() {
+        for(Model model: modelList.values()){
+            model.disposeResources();
+        }
+
     }
 
     @Override

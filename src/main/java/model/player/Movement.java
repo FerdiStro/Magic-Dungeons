@@ -17,6 +17,8 @@ public class Movement implements GameGlockObserver {
     @Setter
     private boolean disableMovement;
 
+    private static final int GRAVITATIONAL_CONSTANT = 1;
+
     /*
         Gravity System
      */
@@ -54,6 +56,8 @@ public class Movement implements GameGlockObserver {
         return this.observe;
     }
 
+    private int verticalSpeed = 0 ;
+    private boolean fall = false;
     @Override
     public void clock() {
         /*
@@ -74,9 +78,28 @@ public class Movement implements GameGlockObserver {
         /*
             Gravity
          */
+        applyGravity();
 
 
+    }
 
+    public void applyGravity() {
+        if (gravity&&fall) {
+            verticalSpeed += GRAVITATIONAL_CONSTANT * mass;
+            move(DIR.Y, verticalSpeed);
+        }
+
+
+        Integer y = busSystem.get(name + "Y", Integer.class);
+
+        //todo: hitbox system
+        if (y >= 500) {
+            verticalSpeed = 0;
+            fall=false;
+        }
+        if(y <= 500){
+            fall=true;
+        }
     }
 
 
