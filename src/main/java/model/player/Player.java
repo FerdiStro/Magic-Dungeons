@@ -22,7 +22,7 @@ public class Player implements Model, ConfigLoader {
     @Getter
     private BusSystem busSystem;
     @Getter
-    private final String  name;
+    private String  name;
     @Setter
     private String path;
 
@@ -31,8 +31,7 @@ public class Player implements Model, ConfigLoader {
     /*
         HitBox-Settings
      */
-    private int hitBoxW = 50;
-    private int hitBoxH = 50;
+    private HitBox hitBox;
     private boolean hitBoxVisible = false;
 
     /*
@@ -56,40 +55,32 @@ public class Player implements Model, ConfigLoader {
         Create player with basic HitBox w = 50 ; h = 50
      */
     public Player(String name, int x, int y, BusSystem busSystem ){
-        this.name   = name;
-        init(x ,y, busSystem);
-
-
+        init(name, x ,y, 0, 0, busSystem);
     }
       /*
         Create player
      */
     public Player(String name, int x ,int y, int hitBoxW , int hitBoxH, BusSystem busSystem){
-        this.hitBoxW    = hitBoxW;
-        this.hitBoxH    = hitBoxH;
+        init(name, x ,y, 0, 0, busSystem);
+    }
+    public Player(String name, int x ,int y, int hitBoxW , int hitBoxH, String path, BusSystem busSystem) {
+        this.path = path;
+        init(name, x, y, hitBoxW, hitBoxH, busSystem);
+    }
+
+
+
+
+    private void init(String name, int x, int y, int hitBoxW, int hitBoxH, BusSystem busSystem){
         this.name   = name;
-        init( x ,y, busSystem );
-
-
-
-    }
-    public Player(String name, int x ,int y, int hitBoxW , int hitBoxH, String path, BusSystem busSystem){
-        this.hitBoxW    = hitBoxW;
-        this.hitBoxH    = hitBoxH;
-        this.path       = path;
-        this.name      = name;
-        init( x ,y, busSystem );
-
-
-    }
-
-
-
-
-    private void init( int x, int y, BusSystem busSystem){
         this.busSystem = busSystem;
+
         setX(x);
         setY(y);
+
+        setHitBox(hitBoxW, hitBoxH);
+
+
 
 
 
@@ -97,7 +88,6 @@ public class Player implements Model, ConfigLoader {
             Load configs with or without path
          */
         try {
-
             if(path != null){
                 load(this, null, path );
             }else{
@@ -110,9 +100,6 @@ public class Player implements Model, ConfigLoader {
 
         head =  (BufferedImage ) configs.get("head");
         body =  (BufferedImage ) configs.get("body");
-
-        busSystem.saveInit(name + "X", x);
-        busSystem.saveInit(name + "Y", x);
 
     }
 
@@ -127,8 +114,8 @@ public class Player implements Model, ConfigLoader {
 
         if(hitBoxVisible){
             g.setBackground(Color.RED);
-            g.fillRect(x,y, hitBoxW, hitBoxH);
-            g.drawRect(x,y, hitBoxW, hitBoxH);
+            g.fillRect(x,y, hitBox.getWidth(), hitBox.getHeight());
+            g.drawRect(x,y, hitBox.getWidth(), hitBox.getHeight());
         }
         g.drawImage(head, x, y, head.getWidth(), head.getHeight(), null);
         g.drawImage(body, x, y + head.getHeight(), body.getWidth(), head.getHeight(), null);
@@ -137,14 +124,20 @@ public class Player implements Model, ConfigLoader {
 
 
     @Override
-    public void setHitBox(int w, int h) {
-        this.hitBoxW = w;
-        this.hitBoxH = h;
+    public void setHitBox(HitBox hitBox) {
+        this.hitBox = hitBox;
     }
+
+    @Override
+    public HitBox getHitbox() {
+        return this.hitBox;
+    }
+
     @Override
     public void setHitBoxVisible(boolean hitBoxVisible) {
         this.hitBoxVisible = hitBoxVisible;
     }
+
 
     @Override
     public void disposeResources() {

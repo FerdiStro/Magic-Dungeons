@@ -1,6 +1,7 @@
 package screens.game;
 
 import bussystem.BusSystem;
+import bussystem.HitBoxList;
 import bussystem.graphicState.GraphicObserver;
 import bussystem.informationStore.StateObserver;
 import bussystem.clock.GameClock;
@@ -9,6 +10,7 @@ import config.ConfigLoader;
 import logger.Logger;
 import lombok.Setter;
 import model.Model;
+import model.Square;
 import model.player.Player;
 import screens.GameScreen;
 import screens.game.background.BackgroundManager;
@@ -23,6 +25,7 @@ public class GameLabel extends JLabel implements GameScreen, StateObserver, Grap
     private BusSystem busSystem;
     private BackgroundManager backgroundManager;
     private HashMap<String, Object> configs;
+
 
     @Setter
     private GameClock gameClock;
@@ -41,7 +44,11 @@ public class GameLabel extends JLabel implements GameScreen, StateObserver, Grap
     private int height;
 
     private HashMap<String, Model> modelList = new HashMap<>();
+    private HitBoxList hitBoxList;
+
     Player player = null;
+    Square floor = null;
+    Square test = null;
 
     private boolean init = false;
     protected void paintComponent(Graphics g) {
@@ -63,13 +70,31 @@ public class GameLabel extends JLabel implements GameScreen, StateObserver, Grap
             player.addMovement(1);
             player.setGravity(true);
             player.setHitBoxVisible(true);
+
+
+            floor =  new Square("floor", 0, 450 , 900, 200, busSystem);
+
+
+            test =  new Square("test", 200, 300 , 100, 200, busSystem);
+
+
+
+
+
+
             addModel(player);
+            addModel(floor);
+
+
         }
 
 
 
         backgroundManager.draw(g2d);
         player.draw(g2d);
+        floor.draw(g2d);
+        test.draw(g2d);
+
 
 
 
@@ -127,5 +152,15 @@ public class GameLabel extends JLabel implements GameScreen, StateObserver, Grap
 
 
         }
+    }
+
+    @Override
+    public void setHitBoxList(HitBoxList hitBoxList) {
+        this.hitBoxList = hitBoxList;
+    }
+
+    @Override
+    public HitBoxList getHitBoxList() {
+        return this.hitBoxList;
     }
 }

@@ -1,9 +1,12 @@
 package model.player;
 
 import bussystem.BusSystem;
+import bussystem.HitBoxList;
 import bussystem.clock.GameGlockObserver;
 import logger.Logger;
 import lombok.Setter;
+
+import java.util.Map;
 
 
 public class Movement implements GameGlockObserver {
@@ -16,6 +19,8 @@ public class Movement implements GameGlockObserver {
     private int speed = 1;
     @Setter
     private boolean disableMovement;
+    @Setter
+    private int jumpHeight = 20;
 
     private static final int GRAVITATIONAL_CONSTANT = 1;
 
@@ -27,17 +32,22 @@ public class Movement implements GameGlockObserver {
     @Setter
     private int mass = 1;
     private boolean observe;
+    @Setter
+    private HitBox hitBox;
+
 
     private final String name;
 
 
 
-    public Movement(String name, BusSystem busSystem){
+    public Movement(String name, BusSystem busSystem, HitBox hitBox){
+        this.hitBox = hitBox;
         this.name = name;
         init(busSystem);
 
     }
-    public Movement(String name, BusSystem busSystem, int speed){
+    public Movement(String name, BusSystem busSystem, int speed, HitBox hitBox){
+        this.hitBox = hitBox;
         this.name = name;
         this.speed = speed;
         init(busSystem);
@@ -67,6 +77,8 @@ public class Movement implements GameGlockObserver {
         Boolean moveRight = busSystem.get("moveRight", Boolean.class);
         Boolean moveLeft = busSystem.get("moveLeft", Boolean.class);
 
+        Boolean moveUp = busSystem.get("moveUp", Boolean.class);
+
         if(moveRight){
             move(DIR.X, speed);
 
@@ -74,6 +86,10 @@ public class Movement implements GameGlockObserver {
         if(moveLeft){
             move(DIR.X, -speed);
         }
+        if(moveUp){
+            move(DIR.Y, -jumpHeight);
+        }
+
 
         /*
             Gravity
@@ -82,6 +98,7 @@ public class Movement implements GameGlockObserver {
 
 
     }
+    boolean firstHitBox = false;
 
     public void applyGravity() {
         if (gravity&&fall) {
@@ -91,19 +108,39 @@ public class Movement implements GameGlockObserver {
 
 
         Integer y = busSystem.get(name + "Y", Integer.class);
+        Integer x = busSystem.get(name + "X", Integer.class);
 
-        //todo: hitbox system
-        if (y >= 500) {
-            verticalSpeed = 0;
-            fall=false;
-        }
-        if(y <= 500){
-            fall=true;
+
+        Map<String, HitBox> stringHitBoxMap = HitBoxList.get();
+        for(String key : stringHitBoxMap.keySet()){
+            HitBox hitBoxL = stringHitBoxMap.get(key);
+            if(!key.equals(name)){
+                if (
+                        y + hitBox.getHeight() >= hitBoxL.getY() &&
+                        x + hitBox.getWidth() >= hitBoxL.getX() &&
+                        x <= hitBoxL.getX() + hitBoxL.getWidth()
+
+
+                )
+
+
+                {
+                    fall = false;
+                    firstHitBox = true;
+                    verticalSpeed = 0;
+                } else if (!firstHitBox) {
+
+                    fall = true;
+
+                }
+
+            }
         }
     }
 
 
     private void move(DIR dir, Integer value){
+        firstHitBox = false;
         switch (dir){
             case X -> {
                 Integer x = busSystem.get(name + "X", Integer.class);
@@ -111,6 +148,7 @@ public class Movement implements GameGlockObserver {
                 busSystem.updateGraphics();
             }
             case Y -> {
+
                 Integer y = busSystem.get(name + "Y", Integer.class);
                 busSystem.save(name + "Y", y+value);
                 busSystem.updateGraphics();
