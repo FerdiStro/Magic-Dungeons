@@ -2,6 +2,7 @@ package inputs;
 
 import bussystem.BusSystem;
 import logger.Logger;
+import lombok.extern.java.Log;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -33,6 +34,9 @@ public class KeyHandling  implements KeyListener {
         busSystem.saveInit("moveRight", false);
         busSystem.saveInit("moveLeft", false);
 
+        busSystem.saveInit("moveUp", false);
+
+
 
 
     }
@@ -40,6 +44,15 @@ public class KeyHandling  implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+        boolean maniLabelVisible = busSystem.get("lbl1b", Boolean.class);
+        if(maniLabelVisible) {
+            if (e.getKeyChar() == KeyEvent.VK_SPACE){
+                busSystem.save("moveUp", true);
+                Logger.debug("moveUp == true");
+
+            }
+        }
+
 
     }
 
@@ -48,6 +61,7 @@ public class KeyHandling  implements KeyListener {
 
 
         boolean maniLabelVisible = busSystem.get("lbl1b", Boolean.class);
+
         if(maniLabelVisible){
             if (e.getKeyCode() == KeyEvent.VK_A) {
                 busSystem.save("moveLeft", true);
@@ -57,6 +71,9 @@ public class KeyHandling  implements KeyListener {
                 busSystem.save("moveRight", true);
                 Logger.debug("moveRight == true");
             }
+
+
+
 
 
                 //...
@@ -86,6 +103,11 @@ public class KeyHandling  implements KeyListener {
             if (e.getKeyCode() == KeyEvent.VK_D) {
                 busSystem.save("moveRight", false);
                 Logger.debug("moveRight == false");
+
+            }
+            if (e.getKeyCode() == KeyEvent.VK_SPACE){
+                busSystem.save("moveUp", false);
+                Logger.debug("moveUp == false");
 
             }
         }

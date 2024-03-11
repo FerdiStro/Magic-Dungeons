@@ -1,8 +1,9 @@
 package model;
 
 import bussystem.BusSystem;
-import bussystem.informationStore.StateObserver;
+import bussystem.HitBoxList;
 import logger.Logger;
+import model.player.HitBox;
 import model.player.Movement;
 
 import java.awt.*;
@@ -10,10 +11,42 @@ import java.awt.*;
 public interface Model {
     void draw(Graphics2D g);
 
+    void setHitBox(HitBox hitBox);
+    default void setHitBox(int w, int h){
+        /*
+        HitBox objet
+         */
+       HitBox hitbox = getHitbox();
+       if(hitbox == null){
+           hitbox = new HitBox(getX(), getY(), 0, 0);
+       }
+       hitbox.setWidth(w);
+       hitbox.setHeight(h);
+       setHitBox(hitbox);
 
-    void setHitBox(int w, int h);
+       /*
+       Globale hitBox list
+        */
+       if(w == 0 && h == 0 ){
+        HitBoxList.remove(getName());
+       }
+       HitBoxList.add(getName(), hitbox);
+
+
+       /*
+       Movement
+        */
+       Movement movement = getMovement();
+       if(movement != null){
+           movement.setHitBox(hitbox);
+           setMovement(movement);
+       }
+    }
+    HitBox getHitbox();
 
     void setHitBoxVisible(boolean hitBoxVisible);
+
+
 
     String getName();
 
@@ -39,13 +72,16 @@ public interface Model {
         Movement Settings
      */
     void setMovement(Movement movement);
+
+
     Movement getMovement();
 
     default void addMovement(){
-        setMovement(new Movement(getName() ,getBusSystem()));
+        setMovement(new Movement(getName() ,getBusSystem(), getHitbox()));
     }
     default void addMovement(int speed){
-         setMovement(new Movement(getName(), getBusSystem(), speed));
+
+         setMovement(new Movement(getName(), getBusSystem(), speed,getHitbox()));
     }
 
     default void setGravity(boolean gravity, int mass){

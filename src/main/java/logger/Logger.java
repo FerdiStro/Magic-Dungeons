@@ -3,7 +3,7 @@ package logger;
 //todo: logger in other thread for extra debug window and debug console
 public class Logger {
 
-    private static final Boolean debug =  true;
+    private static final Boolean debug =  false;
 
     public static void info(String message){
         System.out.print((char)27 + "[33m Info:");
