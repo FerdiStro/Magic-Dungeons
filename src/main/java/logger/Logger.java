@@ -1,9 +1,11 @@
 package logger;
 
-//todo: logger in other thread for extra debug window and debug console
 public class Logger {
 
-    private static final Boolean debug =  false;
+
+    private  static DebugWindow  debugWindow;
+
+    private static final Boolean debug =  true;
 
     public static void info(String message){
         System.out.print((char)27 + "[33m Info:");
@@ -18,12 +20,21 @@ public class Logger {
         System.out.println((char)27 + "[39m " + message);
     }
 
+    private static DebugWindow getInstance(){
+        if(debugWindow==null){
+           debugWindow =  new DebugWindow();
+        }
+        return debugWindow;
+    }
+
     public static void debug(String message){
         if(debug){
-            System.out.print((char)27 + "[31m DEBUG:");
-            System.out.println((char)27 + "[39m " + message);
+            getInstance().addMessage(message);
+//            System.out.print((char)27 + "[31m DEBUG:");
+//            System.out.println((char)27 + "[39m " + message);
         }
     }
+
 
     //todo: Debug methode, when debug var is on all debugs in the project will be displayed
 }

@@ -1,4 +1,5 @@
 import bussystem.BusSystem;
+import logger.Logger;
 import screens.Gui;
 
 
@@ -8,8 +9,10 @@ import java.io.IOException;
 public class Main {
 
 	public static void main(String[] args) throws IOException, InterruptedException, UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		Logger.debug("start-Debugger");
 
+
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
 
 		//state System init
