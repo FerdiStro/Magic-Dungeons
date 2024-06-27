@@ -77,11 +77,23 @@ public interface Model {
     Movement getMovement();
 
     default void addMovement(){
-        setMovement(new Movement(getName() ,getBusSystem(), getHitbox()));
+        if(getHitbox() != null){
+            setMovement(new Movement(getName() ,getBusSystem(), getHitbox()));
+        }else{
+            Logger.error("Hitbox is null ");
+            Logger.debug(getName()  + "Can't add movement ");
+        }
     }
-    default void addMovement(int speed){
 
-         setMovement(new Movement(getName(), getBusSystem(), speed,getHitbox()));
+    default void addMovement(int speed){
+        if(getHitbox() != null){
+            setMovement(new Movement(getName(), getBusSystem(), speed,getHitbox()));
+        }else{
+            Logger.error("Hitbox is null ");
+            Logger.debug(getName()  + " Can't add movement ");
+        }
+
+
     }
 
     default void setGravity(boolean gravity, int mass){
@@ -112,7 +124,7 @@ public interface Model {
 
     private boolean checkMovement(Movement movement){
         if(movement == null){
-            Logger.error("Model: "+this.getName()+"is null! You need to add movement to Model to add gravity ");
+            Logger.error("Model: "+this.getName()+" is null! You need to add movement to Model to add gravity ");
             return false;
         }
         return  true;

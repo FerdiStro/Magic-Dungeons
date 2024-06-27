@@ -66,6 +66,7 @@ public class GameLabel extends JLabel implements GameScreen, StateObserver, Grap
             Init process for objects
          */
         if(!init){
+
             player = new Player("player", 0,  10 ,100, 200,"screens/game/models/Player",busSystem );
             player.addMovement(1);
             player.setGravity(true);
@@ -73,7 +74,6 @@ public class GameLabel extends JLabel implements GameScreen, StateObserver, Grap
 
 
             floor =  new Square("floor", 0, 450 , 900, 200, busSystem);
-
 
             test =  new Square("test", 200, 300 , 100, 200, busSystem);
 

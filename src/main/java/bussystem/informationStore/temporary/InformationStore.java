@@ -28,6 +28,7 @@ public class InformationStore implements bussystem.informationStore.InformationS
 
     @Override
     public void notifyObserverByName(String observerName) {
+
         //todo: only observer which is named
 
     }
